@@ -34,6 +34,7 @@ class CPRed(commands.Cog):
 
 	# Informational commands
 
+	# Need to enable config to clean this up
 	@commands.command()
 	async def roles(self, ctx, select=0):
 		"""List the available roles in Cyberpunk Red"""
