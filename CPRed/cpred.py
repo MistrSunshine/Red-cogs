@@ -3,7 +3,21 @@ from redbot.core.utils.chat_formatting import box, bold
 
 import random
 
+# Night market categories
 nMarkets = ['Food and Drugs', 'Personal Electronics', 'Weapons and Armor', 'Cyberware', 'Clothing and Fashionware', 'Survival Gear']
+# Night market shelf items
+# Food and Drugs
+FandD = ['Canned Goods - 10E$', 'Packaged Goods - 10E$', 'Frozen Goods - 10E$', 'Bags of Grain - 20E$', 'Kibble Pack - 10E$', 'Bags of Prepak - 20E$', '*Street Drugs <20E$', 'Poor Quality Alcohol - 10E$', 'Alcohol - 20E$', 'Excellent Quality Alcohol - 100E$', 'MRE - 10E$', 'Live Chicken - 50E$', 'Live Fish - 50E$', 'Fresh Fruits - 50E$', 'Fresh Vegetables - 50E$', 'Root Vegetables - 20E$', 'Live Pigs - 100E$', 'Exotic Fruits - 100E$', 'Exotic Vegetables - 100E$', 'Street Drugs = 50E$']
+# Personal Electronics
+pe = []
+# Weapons and Armor
+WandA = []
+# Cyberware
+cw = []
+# Clothing and Fashionware
+CandF = []
+# Survival Gear
+sg = []
 
 class CPRed(commands.Cog):
 	"""A Cyberpunk Red helper cog, with dice rolling and information about the game."""
@@ -36,8 +50,14 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def nightmarket(self, ctx):
 		"""Generate a Night Market to visit"""
-		cat1, cat2 = random.choice(nMarkets)
-		await ctx.send("After looking around at a few stalls, you find that this Night Market has {category1} and {category2} for sale.").format(category1=cat1,category2=cat2)
+		cat1, cat2 = random.sample(nMarkets, k=2)
+		results = (
+			"After looking around at a few stalls, it looks like this Night Market has {category1} and {category2} available."
+			).format(
+				category1=cat1,
+				category2=cat2,
+			)
+		await ctx.send(box(results))
 
 
 	# Informational commands
