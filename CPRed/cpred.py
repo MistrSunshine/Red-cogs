@@ -3,6 +3,8 @@ from redbot.core.utils.chat_formatting import box, bold
 
 import random
 
+nMarkets = ['Food and Drugs', 'Personal Electronics', 'Weapons and Armor', 'Cyberware', 'Clothing and Fashionware', 'Survival Gear']
+
 class CPRed(commands.Cog):
 	"""A Cyberpunk Red helper cog, with dice rolling and information about the game."""
 
@@ -31,10 +33,16 @@ class CPRed(commands.Cog):
 		"""See when the next game is scheduled"""
 		await ctx.send("This feature is not implemented yet")
 
+	@commands.command()
+	async def nightmarket(self, ctx):
+		"""Generate a Night Market to visit"""
+		cat1, cat2 = random.choice(nMarkets)
+		await ctx.send("After looking around at a few stalls, you find that this Night Market has {category1} and {category2} for sale.").format(category1=cat1,category2=cat2)
+
 
 	# Informational commands
 
-	# Need to enable config to clean this up
+	# Need to enable config and clean this up
 	@commands.command()
 	async def roles(self, ctx, select=0):
 		"""List the available roles in Cyberpunk Red"""
