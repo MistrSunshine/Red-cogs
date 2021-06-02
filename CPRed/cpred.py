@@ -7,15 +7,15 @@ import random
 nMarkets = ['Food and Drugs', 'Personal Electronics', 'Weapons and Armor', 'Cyberware', 'Clothing and Fashionware', 'Survival Gear']
 # Night market shelf items
 # Food and Drugs
-FandD = ['Canned Goods - 10E$', 'Packaged Goods - 10E$', 'Frozen Goods - 10E$', 'Bags of Grain - 20E$', 'Kibble Pack - 10E$', 'Bags of Prepak - 20E$', '*Street Drugs <20E$', 'Poor Quality Alcohol - 10E$', 'Alcohol - 20E$', 'Excellent Quality Alcohol - 100E$', 'MRE - 10E$', 'Live Chicken - 50E$', 'Live Fish - 50E$', 'Fresh Fruits - 50E$', 'Fresh Vegetables - 50E$', 'Root Vegetables - 20E$', 'Live Pigs - 100E$', 'Exotic Fruits - 100E$', 'Exotic Vegetables - 100E$', 'Street Drugs = 50E$']
+fd = ['Canned Goods - 10E$', 'Packaged Goods - 10E$', 'Frozen Goods - 10E$', 'Bags of Grain - 20E$', 'Kibble Pack - 10E$', 'Bags of Prepak - 20E$', '*Street Drugs <20E$', 'Poor Quality Alcohol - 10E$', 'Alcohol - 20E$', 'Excellent Quality Alcohol - 100E$', 'MRE - 10E$', 'Live Chicken - 50E$', 'Live Fish - 50E$', 'Fresh Fruits - 50E$', 'Fresh Vegetables - 50E$', 'Root Vegetables - 20E$', 'Live Pigs - 100E$', 'Exotic Fruits - 100E$', 'Exotic Vegetables - 100E$', '*Street Drugs = 50E$']
 # Personal Electronics
-pe = []
+pe = ['Agent - 100E$', '*Programs or Hardware <100E$', 'Audio Recorder - 100E$', 'Bug Detector - 500E$', 'Chemical Analyzer - 1000E$', 'Computer - 50E$', 'Cyberdeck - 500E$', 'Disposable Cell Phone - 50E$', '*Instrument - 500E$', '*Programs or Hardware - 500E$', 'Medscanner - 1000E$', 'Homing Tracer - 500E$', 'Radio Communicator - 100E$', 'Techscanner - 1000E$', 'Smart Glasses - 500E$', 'Radar Detector - 500E$', 'Scrambler/Descrambler - 500E$', 'Radio Scanner - 50E$', 'Braindance Viewer - 1000E$', 'Virtuality Goggles - 100E$']
 # Weapons and Armor
-WandA = []
+wa = []
 # Cyberware
 cw = []
 # Clothing and Fashionware
-CandF = []
+cf = ['*Bag Lady Chic', '*Gang Colors', '*Generic Chic', '*Bohemian', '*Leisurewear', '*Nomad Leathers', '*Asia Pop', '*Urban Flash', '*Businesswear', '*High Fashion', 'Biomonitor - 100E$', 'Chemskin - 100E$', 'EMP Threading - 10E$', 'Light Tattoo - 100E$', 'Shift Tacts - 100E$', 'Skinwatch - 100E$', 'Techhair - 100E$', '*Generic Chic', '*Leisurewear', '*Gang Colors']
 # Survival Gear
 sg = []
 
