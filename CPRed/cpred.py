@@ -624,11 +624,11 @@ class CPRed(commands.Cog):
 		elif cat1 == 'Personal Electronics':
 			items1 = self.persElecBuild()
 		elif cat1 == 'Weapons and Armor':
-			items1 = wa
+			items1 = self.weapArmoBuild()
 		elif cat1 == 'Cyberware':
-			items1 = cw
+			items1 = self.cyberBuild()
 		elif cat1 == 'Clothing and Fashionware':
-			items1 = cf
+			items1 = self.clothFashBuild()
 		elif cat1 == 'Survival Gear':
 			items1 = self.survGearBuild()
 		# Assign items for second selected group
@@ -637,11 +637,11 @@ class CPRed(commands.Cog):
 		elif cat2 == 'Personal Electronics':
 			items2 = self.persElecBuild()
 		elif cat2 == 'Weapons and Armor':
-			items2 = wa
+			items2 = self.weapArmoBuild()
 		elif cat2 == 'Cyberware':
-			items2 = cw
+			items2 = self.cyberBuild()
 		elif cat2 == 'Clothing and Fashionware':
-			items2 = cf
+			items2 = self.clothFashBuild()
 		elif cat2 == 'Survival Gear':
 			items2 = self.survGearBuild()
 		# Select amount of items for each category
