@@ -108,6 +108,7 @@ sg = [
 	'Glow Paint - 20E$'
 	]
 
+# Food and Drugs
 streetDrugsLess20 = [
 	'Blue Glass - 20E$',
 	'Smash - 10E$',
@@ -119,6 +120,7 @@ streetDrugs50 = [
 	'Boost - 50E$'
 	]
 
+# Personal Electronics
 progsLess100 = [
 	'Backup Drive - 100E$',
 	'DNA Lock - 100E$',
@@ -179,6 +181,7 @@ cyberdeck = [
 	'Cyberdeck (9 slots) - 1000E$'
 	]
 
+# Weapons and Armor
 pistols = [
 	'H Pistol - 100E$',
 	'VH Pistol - 100E$'
@@ -279,6 +282,7 @@ weapMore500 = [
 	'Smartgun Link - 500E$'
 	]
 
+# Cyberware
 externalLess500 = [
 	'Hidden Holster - 500E$',
 	'Skin Weave - 500E$',
@@ -414,6 +418,7 @@ cyberLeg1000 = [
 	'Superchrome Covering - 1000E$'
 	]
 
+# Fashion
 baglady = [
 	'Bag Lady Chic Bottoms - 20E$',
 	'Bag Lady Chic Top - 10E$',
@@ -534,6 +539,7 @@ high = [
 	'High Fashion Hats - 5000E$'
 	]
 
+# Survival
 survival = [
 	'Shovel - 50E$',
 	'Axe - 50E$'
