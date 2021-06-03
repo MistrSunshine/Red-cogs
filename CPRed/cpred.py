@@ -169,7 +169,8 @@ instruments = [
 	'Drums - 500E$',
 	'Kazoo - 50E$',
 	'Electric Kazoo - 100E$',
-	'Portable Amplifier - 50E$'
+	'Portable Amplifier - 50E$',
+	'Drum Synthesizer - 500E$'
 	]
 
 cyberdeck = [
@@ -179,8 +180,8 @@ cyberdeck = [
 	]
 
 pistols = [
-	'Heavy Pistol - 100E$',
-	'Very Heavy Pistol - 100E$'
+	'H Pistol - 100E$',
+	'VH Pistol - 100E$'
 	]
 
 bows = [
@@ -214,16 +215,16 @@ ammo = [
 	'Basic Ammo - 10E$',
 	'AP Ammo - 100E$',
 	'Biotoxin Ammo - 500E$',
-	'EMP Ammo - 500E$',
+	'EMP Grenade - 500E$',
 	'Expansive Ammo - 100E$',
-	'Flashbang Ammo - 100E$',
+	'Flashbang Grenade - 100E$',
 	'Incendiary Ammo - 100E$',
 	'Poison Ammo - 100E$',
 	'Rubber Ammo - 10E$',
 	'Sleep Ammo - 500E$',
 	'Smart Ammo - 500E$',
-	'Smoke Ammo - 50E$',
-	'Teargas Ammo - 50E$',
+	'Smoke Grenade - 50E$',
+	'Teargas Grenade - 50E$',
 	'Vial of Biotoxin - 500E$',
 	'Vial of Poison - 100E$'
 	]
@@ -248,12 +249,30 @@ armorMore1000 = [
 
 weapLess100 = [
 	'Bayonet - 100E$',
-	'Extended Magazine - 100E$',
+	'M Pistol Extended Magazine - 100E$',
+	'H Pistol Extended Magazine - 100E$',
+	'VH Pistol Extended Magazine - 100E$',
+	'SMG Extended Magazine - 100E$',
+	'H SMG Extended Magazine - 100E$',
+	'Shotgun Extended Magazine - 100E$',
+	'Assault Rifle Extended Magazine - 100E$',
+	'Sniper Rifle Extended Magazine - 100E$',
+	'Grenade Launcher Extended Magazine - 100E$',
+	'Rocket Launcher Extended Magazine - 100E$',
 	'Sniping Scope - 100E$'
 	]
 
 weapMore500 = [
-	'Drum Magazine - 500E$',
+	'M Pistol Drum Magazine - 500E$',
+	'H Pistol Drum Magazine - 500E$',
+	'VH Pistol Drum Magazine - 500E$',
+	'SMG Drum Magazine - 500E$',
+	'H SMG Drum Magazine - 500E$',
+	'Shotgun Drum Magazine - 500E$',
+	'Assault Rifle Drum Magazine - 500E$',
+	'Sniper Rifle Drum Magazine - 500E$',
+	'Grenade Launcher Drum Magazine - 500E$',
+	'Rocket Launcher Drum Magazine - 500E$',
 	'Underbarrel Grenade Launcher - 500E$',
 	'Infrared Nightvision Scope - 500E$',
 	'Underbarrel Shotgun - 500E$',
@@ -721,3 +740,7 @@ class CPRed(commands.Cog):
 			await ctx.send(box("**Roles of Cyberpunk Red**\n1.Rockerboys\t6.Solos\n2.Netrunners\t7.Techs\n3.Medtechs\t  8.Medias\n4.Execs\t\t 9.Lawmen\n5.Fixers\t\t10.Nomads"))
 			await ctx.send("For more information about a particular role, run the !role command with the role number at the end.")
 			await ctx.send(bold("(ex. !roles 3)"))
+
+	async def homes(self, ctx):
+		await ctx.send(bold("Real Estate\tCost per Month\tCost to Buy"))
+		await ctx.send("Living on the Street\tN/A\tN/A\nLiving on the Street in a Vehicle\tN/A\tN/A\nCube Hotel\t500E$\tN/A\nCargo Container\t1000E$\t15000E$\nStudio Apartment\t1500E$\t25000E$\nTwo-bedroom Apartment\t2500E$\t35000E$\nCorporate Conapt\tPaid by Corp\tN/A\nUpscale Conapt\t7500E$\t85000E$\nLuxury Penthouse\t15000\t150000\nCorp Beaverville House\tPaid by Corp\t200000\nCorp Beaverville McMansion\tPaid by Corp\t500000E$")
