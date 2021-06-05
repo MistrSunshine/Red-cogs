@@ -750,5 +750,5 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def homes(self, ctx):
 		"""List the available homes in Cyberpunk Red"""
-		await ctx.send(bold("Real Estate\tCost per Month\tCost to Buy"))
+		await ctx.send(bold("Real Estate\t\t|\t\tCost per Month\t\t|\t\tCost to Buy"))
 		await ctx.send("Living on the Street\tN/A\tN/A\nLiving on the Street in a Vehicle\tN/A\tN/A\nCube Hotel\t500E$\tN/A\nCargo Container\t1000E$\t15000E$\nStudio Apartment\t1500E$\t25000E$\nTwo-bedroom Apartment\t2500E$\t35000E$\nCorporate Conapt\tPaid by Corp\tN/A\nUpscale Conapt\t7500E$\t85000E$\nLuxury Penthouse\t15000\t150000\nCorp Beaverville House\tPaid by Corp\t200000\nCorp Beaverville McMansion\tPaid by Corp\t500000E$")
