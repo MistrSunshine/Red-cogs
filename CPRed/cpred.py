@@ -750,5 +750,5 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def homes(self, ctx):
 		"""List the available homes in Cyberpunk Red"""
-		await ctx.send(bold("Real Estate\t\t|\t\tCost per Month\t\t|\t\tCost to Buy"))
-		await ctx.send("Living on the Street\tN/A\tN/A\nLiving on the Street in a Vehicle\tN/A\tN/A\nCube Hotel\t500E$\tN/A\nCargo Container\t1000E$\t15000E$\nStudio Apartment\t1500E$\t25000E$\nTwo-bedroom Apartment\t2500E$\t35000E$\nCorporate Conapt\tPaid by Corp\tN/A\nUpscale Conapt\t7500E$\t85000E$\nLuxury Penthouse\t15000\t150000\nCorp Beaverville House\tPaid by Corp\t200000\nCorp Beaverville McMansion\tPaid by Corp\t500000E$")
+		await ctx.send(bold("Real Estate"+(' '*16)+"|"+(' '*16)+"Cost per Month"+(' '*16)+"|"+(' '*16)+"Cost to Buy"))
+		await ctx.send("Living on the Street"+(' '*28)+"N/A\t\t\t\t\t\t\t\t\tN/A\nLiving in a Vehicle\t\t\t\t\t\tN/A\t\t\t\t\t\tN/A\nCube Hotel\t\t\t\t500E$\t\t\t\tN/A\nCargo Container\t\t\t\t1000E$\t\t\t\t15000E$\nStudio Apartment\t\t\t\t1500E$\t\t\t\t25000E$\n2-bedroom Apt\t\t\t\t2500E$\t\t\t\t35000E$\nCorporate Conapt\t\t\t\tPaid by Corp\t\t\t\tN/A\nUpscale Conapt\t\t\t\t7500E$\t\t\t\t85000E$\nLuxury Penthouse\t\t\t\t15000E$\t\t\t\t150000E$\nCorp House\t\t\t\tPaid by Corp\t\t\t\t200000E$\nCorp McMansion\t\t\t\tPaid by Corp\t\t\t\t500000E$")
