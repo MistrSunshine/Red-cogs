@@ -1,3 +1,4 @@
+from redbot.core import Config
 from redbot.core import commands
 from redbot.core.utils.chat_formatting import box, bold
 
@@ -550,6 +551,12 @@ class CPRed(commands.Cog):
 
 	def __init__(self, bot):
 		self.bot = bot 
+		self.config = Config.get_conf(self, identifier=8465013279)
+
+		self.config.register_global(
+			nextDate = "Sun, Jun 13th",
+			nextTime = "8:00PM"
+			)
 
 	def foodDrugsBuild(self):
 		fdBuilt = fd
@@ -637,7 +644,22 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def nextgame(self, ctx):
 		"""See when the next game is scheduled"""
-		await ctx.send("This feature is not implemented yet")
+		next_val = await self.config.nextDate() + ' at ' + await self.config.nextTime() + '.'
+		await ctx.send(bold("The next game is scheduled for {}".format(next_val)))
+
+	@commands.command()
+	async def setnextdate(self, ctx, new_value):
+		"""Set the date for the next scheduled game"""
+		await self.config.nextDate.set(new_value)
+		date = await self.config.nextData()
+		await ctx.send("The next scheduled game date has been set to {}.".format(date))
+
+	@commands.command()
+	async def setnexttime(self, ctx, new_value):
+		"""Set the time for the next scheduled game"""
+		await self.config.nextTime.set(new_value)
+		time = await self.config.nextTime()
+		await ctx.send("The time for the next scheduled game is set to {}.".format(time))
 
 	@commands.command()
 	async def nightmarket(self, ctx):
@@ -750,5 +772,15 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def homes(self, ctx):
 		"""List the available homes in Cyberpunk Red"""
-		await ctx.send(bold("Real Estate"+(' '*16)+"|"+(' '*16)+"Cost per Month"+(' '*16)+"|"+(' '*16)+"Cost to Buy"))
-		await ctx.send("Living on the Street"+(' '*28)+"N/A\t\t\t\t\t\t\t\t\tN/A\nLiving in a Vehicle\t\t\t\t\t\tN/A\t\t\t\t\t\tN/A\nCube Hotel\t\t\t\t500E$\t\t\t\tN/A\nCargo Container\t\t\t\t1000E$\t\t\t\t15000E$\nStudio Apartment\t\t\t\t1500E$\t\t\t\t25000E$\n2-bedroom Apt\t\t\t\t2500E$\t\t\t\t35000E$\nCorporate Conapt\t\t\t\tPaid by Corp\t\t\t\tN/A\nUpscale Conapt\t\t\t\t7500E$\t\t\t\t85000E$\nLuxury Penthouse\t\t\t\t15000E$\t\t\t\t150000E$\nCorp House\t\t\t\tPaid by Corp\t\t\t\t200000E$\nCorp McMansion\t\t\t\tPaid by Corp\t\t\t\t500000E$")
+		street = "Living on The Street  |  Rent:N/A  |  Buy:N/A\n"
+		vehicle = "Living in a vehicle  |  Rent:N/A  |  Buy:N/A\n"
+		cube = "Cube Hotel  |  Rent:500E$  |  Buy:N/A\n"
+		cargo = "Cargo Container  |  Rent:1000E$  |  Buy:15000E$\n"
+		studio = "Studio Apartment  |  Rent:1500E$  |  Buy:25000E$\n"
+		twobr = "Two Bedroom Apt  |  Rent:2500E$  |  Buy:35000E$\n"
+		cCon = "Corpo Conapt  |  Rent:Paid by Corp  |  Buy:N/A\n"
+		upCon = "Upscale Conapt  |  Rent: 7500E$  |  Buy:85000E$\n"
+		luxPent = "Luxury Penthouse  |  Rent:15000E$  |  Buy:150000E$\n"
+		cHouse = "Corpo House  |  Rent:Paid by Corp  |  Buy:200000E$\n"
+		cMansion = "Corpo Mansion  |  Rent:Paid by Corp  |  Buy:500000E$"
+		await ctx.send(box(street + vehicle + cube + cargo + studio + twobr + cCon + upCon + luxPent + cHouse + cMansion))
