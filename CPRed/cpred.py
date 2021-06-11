@@ -731,6 +731,7 @@ class CPRed(commands.Cog):
 
 	@commands.command()
 	async def ipreset(self, ctx, user: discord.User):
+		"""Reset a user's IP count after death"""
 		await self.config.user(user).currentip.set(0)
 		await self.config.user(user).totalip.set(0)
 		await ctx.send("Improvement points have been reset for {}.".format(user))
