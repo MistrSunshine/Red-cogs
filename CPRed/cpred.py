@@ -3,6 +3,7 @@ from redbot.core import commands
 from redbot.core.utils.chat_formatting import box, bold
 
 import random
+import discord
 
 # Night market categories
 nMarkets = [
@@ -557,6 +558,10 @@ class CPRed(commands.Cog):
 			nextDate = "Sun, Jun 13th",
 			nextTime = "8:00PM"
 			)
+		self.config.register_user(
+			currentip = 0,
+			totalip = 0
+			)
 
 	def foodDrugsBuild(self):
 		fdBuilt = fd
@@ -627,6 +632,7 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def roll(self, ctx, dice: str):
 		"""Rolls a die/dice in NdN format. (Ex. 1d20 for 1 d20 die roll)"""
+		# Add modifier ability and make result message nicer
 		try:
 			rolls, limit = map(int, dice.split('d'))
 		except Exception:
@@ -638,7 +644,7 @@ class CPRed(commands.Cog):
 
 	@commands.command()
 	async def birth(self, ctx):
-		"""Character creation walkthrough"""
+		"""Character creation walkthrough *wip"""
 		await ctx.send("This feature is not implemented yet")
 
 	@commands.command()
@@ -660,6 +666,79 @@ class CPRed(commands.Cog):
 		await self.config.nextTime.set(new_value)
 		time = await self.config.nextTime()
 		await ctx.send("The time for the next scheduled game is set to {}.".format(time))
+
+	@commands.command()
+	async def ip(self, ctx, user: discord.User=0):
+		"""Check your characters IP balance"""
+		try:
+			# Call the config values
+			currentIP = await self.config.user(user).currentip()
+			totalIP = await self.config.user(user).totalip()
+			# Stringify values
+			sCurrentIP = str(currentIP)
+			sTotalIP = str(totalIP)
+			# Concatenate and send it
+			ip_val = sCurrentIP + ' of ' + sTotalIP
+			await ctx.send(bold("{} currently has {} improvement points available.".format(user, ip_val)))
+		except:
+			# Call the config values
+			currentIP = await self.config.user(ctx.author).currentip()
+			totalIP = await self.config.user(ctx.author).totalip()
+			# Stringify values
+			sCurrentIP = str(currentIP)
+			sTotalIP = str(totalIP)
+			# Concatenate and send it
+			ip_val = sCurrentIP + ' of ' + sTotalIP
+			await ctx.send(bold("You currently have {} improvement points available.".format(ip_val)))
+
+	@commands.command()
+	async def ipadd(self, ctx, user: discord.User, amount: int):
+		"""Add IP to a user's character *wip"""
+		# Increment the available IP
+		init_val = await self.config.user(user).currentip()
+		new_val = init_val + amount
+		await self.config.user(user).currentip.set(new_val)
+		# Also add to the total gained IP
+		init_tot = await self.config.user(user).totalip()
+		new_tot = init_tot + amount
+		await self.config.user(user).totalip.set(new_tot)
+		# Stringify
+		new_val = str(new_val)
+		new_tot = str(new_tot)
+		# Reply to user
+		await ctx.send("{} has been added to {} IP totals.".format(amount, user))
+		await ctx.send("The new values are {} of {} IP.".format(new_val, new_tot))
+
+	@commands.command()
+	async def ipuse(self, ctx, amount: int):
+		"""Use the IP assigned to your character"""
+		init_val = await self.config.user(ctx.author).currentip()
+		if amount <= init_val:
+			# Subtract the used IP
+			new_val = init_val - amount
+			await self.config.user(ctx.author).currentip.set(new_val)
+			# Call total IP
+			total = await self.config.user(ctx.author).totalip()
+			# Stringify
+			total = str(total)
+			new_val = str(new_val)
+			amount = str(amount)
+			# Reply to user
+			await ctx.send("You have successfully used {} IP.".format(amount))
+			await ctx.send("Your new IP values are {} of {}.".format(new_val, total))
+		else:
+			await ctx.send("You don't have enough IP for that.")
+
+	@commands.command()
+	async def ipreset(self, ctx, user: discord.User):
+		await self.config.user(user).currentip.set(0)
+		await self.config.user(user).totalip.set(0)
+		await ctx.send("Improvement points have been reset for {}.".format(user))
+
+	@commands.command()
+	async def lottery(self, ctx0):
+		"""Lottery system *wip"""
+		await ctx.send("This feature is not implemented yet")
 
 	@commands.command()
 	async def nightmarket(self, ctx):
