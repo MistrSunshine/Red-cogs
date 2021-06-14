@@ -560,7 +560,8 @@ class CPRed(commands.Cog):
 			)
 		self.config.register_user(
 			currentip = 0,
-			totalip = 0
+			totalip = 0,
+			achievements = []
 			)
 
 	def foodDrugsBuild(self):
@@ -638,9 +639,10 @@ class CPRed(commands.Cog):
 		except Exception:
 			await ctx.send(box("Format must be NdN!"))
 			return
-
+		author = ctx.author
+		announce = " has rolled {} d{} dice. The results are:".format(rolls, limit)
 		result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-		await ctx.send(box(result))
+		await ctx.send(box(author + anounce + '\n' + result))
 
 	@commands.command()
 	async def birth(self, ctx):
@@ -693,7 +695,7 @@ class CPRed(commands.Cog):
 
 	@commands.command()
 	async def ipadd(self, ctx, user: discord.User, amount: int):
-		"""Add IP to a user's character *wip"""
+		"""Add IP to a user's character"""
 		# Increment the available IP
 		init_val = await self.config.user(user).currentip()
 		new_val = init_val + amount
