@@ -642,7 +642,7 @@ class CPRed(commands.Cog):
 		author = ctx.author
 		announce = " has rolled {} d{} dice. The results are:".format(rolls, limit)
 		result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-		await ctx.send(box(author + anounce + '\n' + result))
+		await ctx.send(box(author + announce + '\n' + result))
 
 	@commands.command()
 	async def birth(self, ctx):
