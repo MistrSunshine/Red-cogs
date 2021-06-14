@@ -556,7 +556,8 @@ class CPRed(commands.Cog):
 
 		self.config.register_global(
 			nextDate = "Sun, Jun 13th",
-			nextTime = "8:00PM"
+			nextTime = "8:00PM",
+			fixerLvl = 1
 			)
 		self.config.register_user(
 			currentip = 0,
@@ -708,8 +709,7 @@ class CPRed(commands.Cog):
 		new_val = str(new_val)
 		new_tot = str(new_tot)
 		# Reply to user
-		await ctx.send(box("{} has been added to {} IP totals.".format(amount, user)))
-		await ctx.send(box("The new values are {} of {} IP.".format(new_val, new_tot)))
+		await ctx.send(box("{} has been added to {} IP totals.".format(amount, user) + "\n\n" + "The new values are {} of {} IP.".format(new_val, new_tot)))
 
 	@commands.command()
 	async def ipuse(self, ctx, amount: int):
@@ -726,8 +726,7 @@ class CPRed(commands.Cog):
 			new_val = str(new_val)
 			amount = str(amount)
 			# Reply to user
-			await ctx.send(box("You have successfully used {} IP.".format(amount)))
-			await ctx.send(box("Your new IP values are {} of {}.".format(new_val, total)))
+			await ctx.send(box("You have successfully used {} IP.".format(amount) + "\n\n" + "Your new IP values are {} of {}.".format(new_val, total)))
 		else:
 			await ctx.send(box("You don't have enough IP for that."))
 
@@ -739,8 +738,13 @@ class CPRed(commands.Cog):
 		await ctx.send(box("Improvement points have been reset for {}.".format(user)))
 
 	@commands.command()
-	async def lottery(self, ctx0):
+	async def lottery(self, ctx):
 		"""Lottery system *wip"""
+		await ctx.send(box("This feature is not implemented yet"))
+
+	@commands.command()
+	async def setfixerlevel(self, ctx, level: int):
+		"""Set the current fixer level for night market generation"""
 		await ctx.send(box("This feature is not implemented yet"))
 
 	@commands.command()
