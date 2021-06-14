@@ -639,7 +639,7 @@ class CPRed(commands.Cog):
 		except Exception:
 			await ctx.send(box("Format must be NdN!"))
 			return
-		author = ctx.author
+		author = str(ctx.author)
 		announce = " has rolled {} d{} dice. The results are:".format(rolls, limit)
 		result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
 		await ctx.send(box(author + announce + '\n' + result))
