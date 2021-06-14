@@ -636,36 +636,36 @@ class CPRed(commands.Cog):
 		try:
 			rolls, limit = map(int, dice.split('d'))
 		except Exception:
-			await ctx.send("Format must be NdN!")
+			await ctx.send(box("Format must be NdN!"))
 			return
 
 		result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-		await ctx.send(result)
+		await ctx.send(box(result))
 
 	@commands.command()
 	async def birth(self, ctx):
 		"""Character creation walkthrough *wip"""
-		await ctx.send("This feature is not implemented yet")
+		await ctx.send(box("This feature is not implemented yet"))
 
 	@commands.command()
 	async def nextgame(self, ctx):
 		"""See when the next game is scheduled"""
 		next_val = await self.config.nextDate() + ' at ' + await self.config.nextTime() + '.'
-		await ctx.send(bold("The next game is scheduled for {}".format(next_val)))
+		await ctx.send(box("The next game is scheduled for {}".format(next_val)))
 
 	@commands.command()
 	async def setnextdate(self, ctx, new_value):
 		"""Set the date for the next scheduled game"""
 		await self.config.nextDate.set(new_value)
-		date = await self.config.nextData()
-		await ctx.send("The next scheduled game date has been set to {}.".format(date))
+		date = await self.config.nextDate()
+		await ctx.send(box("The next scheduled game date has been set to {}.".format(date)))
 
 	@commands.command()
 	async def setnexttime(self, ctx, new_value):
 		"""Set the time for the next scheduled game"""
 		await self.config.nextTime.set(new_value)
 		time = await self.config.nextTime()
-		await ctx.send("The time for the next scheduled game is set to {}.".format(time))
+		await ctx.send(box("The time for the next scheduled game is set to {}.".format(time)))
 
 	@commands.command()
 	async def ip(self, ctx, user: discord.User=0):
@@ -679,7 +679,7 @@ class CPRed(commands.Cog):
 			sTotalIP = str(totalIP)
 			# Concatenate and send it
 			ip_val = sCurrentIP + ' of ' + sTotalIP
-			await ctx.send(bold("{} currently has {} improvement points available.".format(user, ip_val)))
+			await ctx.send(box("{} currently has {} improvement points available.".format(user, ip_val)))
 		except:
 			# Call the config values
 			currentIP = await self.config.user(ctx.author).currentip()
@@ -689,7 +689,7 @@ class CPRed(commands.Cog):
 			sTotalIP = str(totalIP)
 			# Concatenate and send it
 			ip_val = sCurrentIP + ' of ' + sTotalIP
-			await ctx.send(bold("You currently have {} improvement points available.".format(ip_val)))
+			await ctx.send(box("You currently have {} improvement points available.".format(ip_val)))
 
 	@commands.command()
 	async def ipadd(self, ctx, user: discord.User, amount: int):
@@ -706,8 +706,8 @@ class CPRed(commands.Cog):
 		new_val = str(new_val)
 		new_tot = str(new_tot)
 		# Reply to user
-		await ctx.send("{} has been added to {} IP totals.".format(amount, user))
-		await ctx.send("The new values are {} of {} IP.".format(new_val, new_tot))
+		await ctx.send(box("{} has been added to {} IP totals.".format(amount, user)))
+		await ctx.send(box("The new values are {} of {} IP.".format(new_val, new_tot)))
 
 	@commands.command()
 	async def ipuse(self, ctx, amount: int):
@@ -724,22 +724,22 @@ class CPRed(commands.Cog):
 			new_val = str(new_val)
 			amount = str(amount)
 			# Reply to user
-			await ctx.send("You have successfully used {} IP.".format(amount))
-			await ctx.send("Your new IP values are {} of {}.".format(new_val, total))
+			await ctx.send(box("You have successfully used {} IP.".format(amount)))
+			await ctx.send(box("Your new IP values are {} of {}.".format(new_val, total)))
 		else:
-			await ctx.send("You don't have enough IP for that.")
+			await ctx.send(box("You don't have enough IP for that."))
 
 	@commands.command()
 	async def ipreset(self, ctx, user: discord.User):
 		"""Reset a user's IP count after death"""
 		await self.config.user(user).currentip.set(0)
 		await self.config.user(user).totalip.set(0)
-		await ctx.send("Improvement points have been reset for {}.".format(user))
+		await ctx.send(box("Improvement points have been reset for {}.".format(user)))
 
 	@commands.command()
 	async def lottery(self, ctx0):
 		"""Lottery system *wip"""
-		await ctx.send("This feature is not implemented yet")
+		await ctx.send(box("This feature is not implemented yet"))
 
 	@commands.command()
 	async def nightmarket(self, ctx):
@@ -864,3 +864,8 @@ class CPRed(commands.Cog):
 		cHouse = "Corpo House  |  Rent:Paid by Corp  |  Buy:200000E$\n"
 		cMansion = "Corpo Mansion  |  Rent:Paid by Corp  |  Buy:500000E$"
 		await ctx.send(box(street + vehicle + cube + cargo + studio + twobr + cCon + upCon + luxPent + cHouse + cMansion))
+
+	@commands.command()
+	async def drugs(self, ctx):
+		"""List the available drugs and their effects in Cyberpunk Red"""
+		await ctx.send(box("This feature is not implemented yet."))
