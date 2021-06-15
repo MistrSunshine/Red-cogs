@@ -562,7 +562,7 @@ class CPRed(commands.Cog):
 		self.config.register_user(
 			currentip = 0,
 			totalip = 0,
-			achievements = []
+			achievements = {}
 			)
 
 	def foodDrugsBuild(self):
@@ -808,11 +808,23 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def achievements(self, ctx, user: discord.User=0):
 		"""Display player achievements"""
+		try:
+			awards = self.config.user(user).achievements()
+			sAwards = str(awards)
+			await ctx.send(box("{}'s current achievements are:\n".format(user) + sAwards))
+		except:
+			awards = self.config.user(ctx.author).achievements()
+			sAwards = str(awards)
+			await ctx.send(box("Your current achievements are:\n" + sAwards))
+
+	@commands.command()
+	async def addachievement(self, ctx, achievement: str, desc: str):
+		"""Add an achievement and desc to the acievement system"""
 		await ctx.send(box("This is not implemented yet."))
 
 	@commands.command()
-	async def addachievement(self, ctx, user: discord.User, achievement: str):
-		"""Add an achievement to a players profile"""
+	async def achievementunlock (self, ctx, user: discord.User, achievement: str):
+		"""Add an achievement to a player"""
 		await ctx.send(box("This is not implemented yet."))
 
 
