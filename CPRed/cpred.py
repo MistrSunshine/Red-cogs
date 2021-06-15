@@ -818,7 +818,10 @@ class CPRed(commands.Cog):
 
 	# Informational commands
 
-	# Need to enable config and clean this up
+	@commands.command()
+	async def source(self, ctx):
+		await ctx.send("The CP_AI sourcecode can be found at: https://github.com/MistrSunshine/Red-cogs")
+
 	@commands.command()
 	async def roles(self, ctx, select=0):
 		"""List the available roles in Cyberpunk Red"""
