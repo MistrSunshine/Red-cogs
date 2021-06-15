@@ -805,7 +805,7 @@ class CPRed(commands.Cog):
 		await ctx.send(box(results))
 
 	@commands.command()
-	async def achievements(self, ctx):
+	async def achievements(self, ctx, user: discord.User=0):
 		"""Display player achievements"""
 		await ctx.send(box("This is not implemented yet."))
 
@@ -873,8 +873,8 @@ class CPRed(commands.Cog):
 			await ctx.send("Able to drive any type of vehicle with tremendous skill.")
 		else:
 			await ctx.send(box("**Roles of Cyberpunk Red**\n1.Rockerboys\t6.Solos\n2.Netrunners\t7.Techs\n3.Medtechs\t  8.Medias\n4.Execs\t\t 9.Lawmen\n5.Fixers\t\t10.Nomads"))
-			await ctx.send("For more information about a particular role, run the !role command with the role number at the end.")
-			await ctx.send(bold("(ex. !roles 3)"))
+			await ctx.send("For more information about a particular role, run the !roles command with the role number at the end.")
+			await ctx.send(bold("(Ex. !roles 3)"))
 
 	@commands.command()
 	async def homes(self, ctx):
@@ -893,6 +893,19 @@ class CPRed(commands.Cog):
 		await ctx.send(box(street + vehicle + cube + cargo + studio + twobr + cCon + upCon + luxPent + cHouse + cMansion))
 
 	@commands.command()
-	async def drugs(self, ctx):
+	async def drugs(self, ctx, drug=0):
 		"""List the available drugs and their effects in Cyberpunk Red"""
-		await ctx.send(box("This feature is not implemented yet."))
+		if drug == 1:
+			await ctx.send(box("Black Lace\nCost per Dose: 50E$\nLasts: 24h\nPrimary Effects:\n* User takes 2d6 Humanity Loss upon taking a dose, which is returned if the user isn't affected by Black Lace's Secondary Effect.\n* For the duration of the Primary Effect, the user ignores the effects of the Seriously Wounded Wound State.\nSecondary Effect (DV17):\n* Humanity Loss from Primary Effect isn't returned.\n* You're addicted to Black Lace. While addicted, unless the user is currently experiencing the Primary Effect of Black Lace, their REF is lowered by 2 points."))
+		elif drug == 2:
+			await ctx.send(box("Blue Glass\nCost per Dose: 20E$\nLasts: 4h\nPrimary Effects:\n* For the duration of the Primary Effect, The GM will occasionally tell you when you are 'flashing out,' meaning you are hallucinating swirls of vibrant colors in short, powerful bursts. You lose your ability to do an Action on a Turn while in this state.\nSecondary Effect (DV15):\n* You're addicted to Blue Glass.\n* While addicted, The GM will occasionally tell you when you are 'flashing out,' hallucinating in short powerful bursts that cause you to lose your ability to do an Action on a Turn while in this state.\n* A Blue Glass Junkie will typically 'flash out' once every hour, but this can vary heavily from person to person.\n* While addicted to Blue Glass, its Primary Effect changes: Instead of causing you to 'flash out', you are instead immune to 'flashing out' while experiencing the Primary Effect of Blue Glass. Now, you take it for stability."))
+		elif drug == 3:
+			await ctx.send(box("Boost\nCost per Dose: 50E$\nLasts: 24h\nPrimary Effects:\n* The user's INT increases by 2 points. This can raise your INT above 8.\nSecondary Effect (DV17):\n* You're addicted to Boost. they are now. While addicted, your INT is lowered by 2 points."))
+		elif drug == 4:
+			await ctx.send(box("Smash\nCost per Dose: 10E$\nLasts: 4h\nPrimary Effects:\n* For the duration of the Primary Effect, the user gets +2 to the following Skills: Dance, Contortionist, Conversation, Human Perception, Persuasion, and Acting.\nSecondary Effect (DV15):\n* You're addicted to Smash. While addicted, the user gets -2 to the following Skills: Dance, Contortionist, Conversation, Human Perception, Persuasion, and Acting.\n* While addicted to Smash, your GM will occasionally tell you when you crave more Smash, and you should do your best to roleplay accordingly."))
+		elif drug == 5:
+			await ctx.send(box("Synthcoke\nCost per Dose: 20E$\nLasts: 4h\nPrimary Effects:\n* For the duration of the Primary Effect, the user's REF increases by 1 point. This can raise your REF above 8. In addition, they are prone to paranoid ideations.\n* For the duration of the Primary Effect, your GM will occasionally tell you when you feel paranoid, and you should do your best to roleplay accordingly.\nSecondary Effect (DV15):\n* You're addicted to Synthcoke. While addicted, their REF is lowered by 2 points, unless the user is currently experiencing the Primary Effect of Synthcoke.\n* While addicted to Synthcoke, your GM will occasionally tell you when you crave more Synthcoke, and you should do your best to roleplay accordingly."))
+		else:
+			await ctx.send(box("**Drugs of Cyberpunk Red**\n1.Black Lace\n2.Blue Glass\n3.Boost\n4.Smash\n5.Synthcoke"))
+			await ctx.send("For more information about a particular drug, run the !drugs command with the drug number at the end.")
+			await ctx.send(bold("(Ex. !drugs 3)"))
