@@ -804,6 +804,16 @@ class CPRed(commands.Cog):
 		results = categories + sellItems
 		await ctx.send(box(results))
 
+	@commands.command()
+	async def achievements(self, ctx):
+		"""Display player achievements"""
+		await ctx.send(box("This is not implemented yet."))
+
+	@commands.command()
+	async def addachievement(self, ctx, user: discord.User, achievement: str):
+		"""Add an achievement to a players profile"""
+		await ctx.send(box("This is not implemented yet."))
+
 
 	# Informational commands
 
