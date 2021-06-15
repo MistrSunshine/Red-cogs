@@ -745,7 +745,17 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def setfixerlevel(self, ctx, level: int):
 		"""Set the current fixer level for night market generation"""
-		await ctx.send(box("This feature is not implemented yet"))
+		await self.config.fixerLvl.set(level)
+		lvl = await self.config.fixerLvl()
+		lvl = str(lvl)
+		await ctx.send(box("The fixer is now set to level {}.".format(lvl)))
+
+	@commands.command()
+	async def fixerlevel(self, ctx):
+		"""Show the current fixer level being used by the night market generator"""
+		fixer = await self.config.fixerLvl()
+		fixer = str(fixer)
+		await ctx.send(box("Your current fixer is level {}.".format(fixer)))
 
 	@commands.command()
 	async def nightmarket(self, ctx):
@@ -778,8 +788,9 @@ class CPRed(commands.Cog):
 		elif cat2 == 'Survival Gear':
 			items2 = self.survGearBuild()
 		# Select amount of items for each category
-		count1 = random.randint(1, 6)
-		count2 = random.randint(1, 6)
+		top = 5 + await self.config.fixerLvl()
+		count1 = random.randint(1, top)
+		count2 = random.randint(1, top)
 		# Select which items are available
 		items = random.sample(items1, k=count1) + random.sample(items2, k=count2)
 		# Build response
