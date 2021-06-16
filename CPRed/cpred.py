@@ -558,6 +558,7 @@ class CPRed(commands.Cog):
 			nextDate = "Sun, Jun 13th",
 			nextTime = "8:00PM",
 			fixerLvl = 1,
+			achList = {},
 			achievements = [],
 			lottery = []
 			)
