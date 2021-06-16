@@ -820,12 +820,11 @@ class CPRed(commands.Cog):
 			await ctx.send(box("Your current achievements are:\n" + sAwards))
 
 	@commands.command()
-	#async def achievementset(self, ctx, achievement: str, desc: str):
-	async def achievementset(self, ctx, achievement: dict):
+	async def achievementset(self, ctx, achievement: str, desc: str):
 		"""Add an achievement and desc to the achievement system"""
 		achvDB = {}
 		achvDB = self.config.achList()
-		achvDB[achievement] = desc
+		#achvDB[achievement] = desc
 		await self.config.achList.set(achvDB)
 		await ctx.send(box("The {} achievement has been added to the catalogue.".format(achievement)))
 
