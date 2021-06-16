@@ -562,7 +562,7 @@ class CPRed(commands.Cog):
 		self.config.register_user(
 			currentip = 0,
 			totalip = 0,
-			achievements = {}
+			achievements = []
 			)
 
 	def foodDrugsBuild(self):
@@ -818,7 +818,7 @@ class CPRed(commands.Cog):
 			await ctx.send(box("Your current achievements are:\n" + sAwards))
 
 	@commands.command()
-	async def addachievement(self, ctx, achievement: str, desc: str):
+	async def achievementset(self, ctx, achievement: str, desc: str):
 		"""Add an achievement and desc to the acievement system"""
 		await ctx.send(box("This is not implemented yet."))
 
