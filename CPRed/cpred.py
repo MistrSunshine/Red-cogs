@@ -823,16 +823,16 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def achievementset(self, ctx, achievement: str, desc: str):
 		"""Add an achievement and desc to the achievement system"""
-		achvDB = dict(self.config.achievements())
+		achvDB = self.config.achList()
 		achvDB[achievement] = desc
-		await self.config.achievements.set(achvDB)
+		await self.config.achList.set(achvDB)
 		await ctx.send(box("The {} achievement has been added to the catalogue.".format(achievement)))
 
 	@commands.command()
 	async def addachievement (self, ctx, user: discord.User, achievement: str):
 		"""Add an achievement to a player"""
 		try:
-			achvDB = {self.config.achievements()}
+			achvDB = {self.config.achList()}
 			awd = {}
 			awd[achievement] = achvDB[achievement]
 			await self.config.user(user).awards.set(awd)
