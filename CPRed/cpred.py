@@ -559,13 +559,12 @@ class CPRed(commands.Cog):
 			nextTime = "8:00PM",
 			fixerLvl = 1,
 			achList = {},
-			achievements = [],
 			lottery = []
 			)
 		self.config.register_user(
 			currentip = 0,
 			totalip = 0,
-			awards = []
+			awarded = {}
 			)
 
 	def foodDrugsBuild(self):
@@ -823,6 +822,7 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def achievementset(self, ctx, achievement: str, desc: str):
 		"""Add an achievement and desc to the achievement system"""
+		achvDB = {}
 		achvDB = self.config.achList()
 		achvDB[achievement] = desc
 		await self.config.achList.set(achvDB)
