@@ -835,6 +835,7 @@ class CPRed(commands.Cog):
 		#try:
 		achvDB = await self.config.achList()
 		desc = achvDB[achievement]
+		awd = {}
 		awd = await self.config.user(user).awards()
 		awd[achievement] = desc
 		await self.config.user(user).awards.set(awd)
