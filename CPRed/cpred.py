@@ -845,7 +845,7 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def listachievements (self, ctx):
 		"""List available achievements"""
-		listAch = self.config.achList.get_raw()
+		listAch = await self.config.achList.get_raw()
 		await ctx.send(box("Available achievements are:\n{}".format(listAch)))
 
 
