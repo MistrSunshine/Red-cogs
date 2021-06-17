@@ -834,7 +834,7 @@ class CPRed(commands.Cog):
 		"""Add an achievement to a player"""
 		try:
 			achvDB = await self.config.achList()
-			awd = {}
+			awd = await self.config.user(user).awards()
 			awd[achievement] = achvDB[achievement]
 			await self.config.user(user).awards.set(awd)
 			await ctx.send(box("The {} achievement has been unlocked by {}!".format(achievement, user)))
