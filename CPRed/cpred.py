@@ -813,20 +813,17 @@ class CPRed(commands.Cog):
 	async def achievements(self, ctx, user: discord.User=0):
 		"""Display player achievements"""
 		try:
-			awards = self.config.user(user).awards()
-			sAwards = str(awards)
-			await ctx.send(box("{}'s current achievements are:\n".format(user) + sAwards))
+			awards = await self.config.user(user).awards()
+			await ctx.send(box("{}'s current achievements are:\n".format(user) + awards))
 		except:
-			awards = self.config.user(ctx.author).awards()
-			sAwards = str(awards)
-			await ctx.send(box("Your current achievements are:\n" + sAwards))
+			awards = await self.config.user(ctx.author).awards()
+			await ctx.send(box("Your current achievements are:\n" + awards))
 
 	@commands.command()
 	async def achievementset(self, ctx, achievement: str, desc: str):
 		"""Add an achievement and desc to the achievement system"""
-		achvDB = {}
-		achvDB = self.config.achList()
-		#achvDB[achievement] = desc
+		achvDB = await self.config.achList()
+		achvDB[achievement] = desc
 		await self.config.achList.set(achvDB)
 		await ctx.send(box("The {} achievement has been added to the catalogue.".format(achievement)))
 
@@ -834,7 +831,7 @@ class CPRed(commands.Cog):
 	async def addachievement (self, ctx, user: discord.User, achievement: str):
 		"""Add an achievement to a player"""
 		try:
-			achvDB = {self.config.achList()}
+			achvDB = await self.config.achList()
 			awd = {}
 			awd[achievement] = achvDB[achievement]
 			await self.config.user(user).awards.set(awd)
@@ -845,7 +842,7 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def listachievements (self, ctx):
 		"""List available achievements"""
-		listAch = await self.config.achList.get_raw()
+		listAch = await self.config.achList()
 		await ctx.send(box("Available achievements are:\n{}".format(listAch)))
 
 
