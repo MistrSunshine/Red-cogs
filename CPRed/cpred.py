@@ -813,11 +813,11 @@ class CPRed(commands.Cog):
 	async def achievements(self, ctx, user: discord.User=0):
 		"""Display player achievements"""
 		try:
-			awards = await self.config.user(user).awards()
+			awards = await self.config.user(user).awarded()
 			sAwards = str(awards)
 			await ctx.send(box("{}'s current achievements are:\n".format(user) + sAwards))
 		except:
-			awards = await self.config.user(ctx.author).awards()
+			awards = await self.config.user(ctx.author).awarded()
 			sAwards = str(awards)
 			await ctx.send(box("Your current achievements are:\n" + sAwards))
 
@@ -836,9 +836,9 @@ class CPRed(commands.Cog):
 		achvDB = await self.config.achList()
 		desc = achvDB[achievement]
 		awd = {}
-		awd = await self.config.user(user).awards()
+		awd = await self.config.user(user).awarded()
 		awd[achievement] = desc
-		await self.config.user(user).awards.set(awd)
+		await self.config.user(user).awarded.set(awd)
 		await ctx.send(box("The {} achievement has been unlocked by {}!".format(achievement, user)))
 		await ctx.send(box("The description for {} is {}.".format(achievement, desc)))
 		#except:
