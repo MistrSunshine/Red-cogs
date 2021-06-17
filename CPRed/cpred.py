@@ -558,7 +558,9 @@ class CPRed(commands.Cog):
 			nextDate = "Sun, Jun 13th",
 			nextTime = "8:00PM",
 			fixerLvl = 1,
-			achList = {},
+			achList = {
+				"Test": "Super cool tester"
+			},
 			lottery = []
 			)
 		self.config.register_user(
@@ -839,6 +841,12 @@ class CPRed(commands.Cog):
 			await ctx.send(box("This is not implemented yet."))
 		except:
 			await ctx.send(box("The requested achievement was not found."))
+
+	@commands.command()
+	async def listachievements (self, ctx):
+		"""List available achievements"""
+		listAch = self.config.achList()
+		await ctx.send(box("Available achievements are:\n{}".format(listAch)))
 
 
 	# Informational commands
