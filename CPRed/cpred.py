@@ -835,10 +835,10 @@ class CPRed(commands.Cog):
 		#try:
 		achvDB = await self.config.achList()
 		desc = achvDB[achievement]
-		#awd = await self.config.user(user).awards()
-		#awd[achievement] = achvDB[achievement]
-		#await self.config.user(user).awards.set(awd)
-		#await ctx.send(box("The {} achievement has been unlocked by {}!".format(achievement, user)))
+		awd = await self.config.user(user).awards()
+		awd[achievement] = desc
+		await self.config.user(user).awards.set(awd)
+		await ctx.send(box("The {} achievement has been unlocked by {}!".format(achievement, user)))
 		await ctx.send(box("The description for {} is {}.".format(achievement, desc)))
 		#except:
 			#await ctx.send(box("The requested achievement was not found."))
