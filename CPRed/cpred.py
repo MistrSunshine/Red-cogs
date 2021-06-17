@@ -833,7 +833,8 @@ class CPRed(commands.Cog):
 	async def addachievement (self, ctx, user: discord.User, achievement: str):
 		"""Add an achievement to a player"""
 		#try:
-		desc = await self.config.achList(achievement)
+		achvDB = await self.config.achList()
+		desc = achvDB[achievement]
 		#awd = await self.config.user(user).awards()
 		#awd[achievement] = achvDB[achievement]
 		#await self.config.user(user).awards.set(awd)
