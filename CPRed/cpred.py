@@ -833,11 +833,12 @@ class CPRed(commands.Cog):
 	async def addachievement (self, ctx, user: discord.User, achievement: str):
 		"""Add an achievement to a player"""
 		#try:
-		achvDB = await self.config.achList()
-		awd = await self.config.user(user).awards()
-		awd[achievement] = achvDB[achievement]
-		await self.config.user(user).awards.set(awd)
-		await ctx.send(box("The {} achievement has been unlocked by {}!".format(achievement, user)))
+		desc = await self.config.achList(achievement)
+		#awd = await self.config.user(user).awards()
+		#awd[achievement] = achvDB[achievement]
+		#await self.config.user(user).awards.set(awd)
+		#await ctx.send(box("The {} achievement has been unlocked by {}!".format(achievement, user)))
+		await ctx.send(box("The description for {} is {}.".format(achievement, desc)))
 		#except:
 			#await ctx.send(box("The requested achievement was not found."))
 
