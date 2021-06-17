@@ -675,6 +675,11 @@ class CPRed(commands.Cog):
 		await ctx.send(box("The time for the next scheduled game is set to {}.".format(time)))
 
 	@commands.command()
+	async def homebrew(self, ctx, task: str):
+		"""Homebrew rule suggestion and voting system"""
+		await ctx.send(box("This feature is not yet implemented"))
+
+	@commands.command()
 	async def ip(self, ctx, user: discord.User=0):
 		"""Check your characters IP balance"""
 		try:
