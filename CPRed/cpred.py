@@ -682,7 +682,7 @@ class CPRed(commands.Cog):
 		"""WIP Homebrew rule suggestion and voting system"""
 		await ctx.send(box("This feature is not yet implemented"))
 
-	@ip.group()
+	@commands.group()
 	async def ip(self, ctx: commands.Context):
 		"""
 		Commands to control the Improvement Point System
