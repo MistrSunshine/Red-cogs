@@ -561,7 +561,8 @@ class CPRed(commands.Cog):
 			achList = {
 				"Test": "Super cool tester"
 			},
-			lottery = []
+			lottery = [],
+			prizes = []
 			)
 		self.config.register_user(
 			currentip = 0,
@@ -750,6 +751,18 @@ class CPRed(commands.Cog):
 	async def lottery(self, ctx):
 		"""Lottery system *wip"""
 		await ctx.send(box("This feature is not implemented yet"))
+
+	@commands.command()
+	async def addprize(self, ctx):
+		"""Add a prize to the prize list"""
+		pz = open('prize').readlines()
+		await self.config.prizes.set(pz)
+		await ctx.send(box("The prize list has been generated."))
+
+	@commands.command()
+	async def prize(self, ctx):
+		"""Randomly select 3 raffle prizes"""
+		pass
 
 	@commands.command()
 	async def setfixerlevel(self, ctx, level: int):
