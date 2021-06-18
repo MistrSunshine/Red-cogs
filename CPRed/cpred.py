@@ -764,7 +764,8 @@ class CPRed(commands.Cog):
 		"""Randomly select 3 raffle prizes"""
 		options = await self.config.prizes()
 		selection = random.sample(options, k=3)
-		await ctx.send("Congratulations {}! Please choose one prize from the following:\n".format(user) + selection)
+		sSelection = str(selection)
+		await ctx.send("Congratulations {}! Please choose one prize from the following:\n".format(user) + sSelection)
 
 	@commands.command()
 	async def setfixerlevel(self, ctx, level: int):
