@@ -804,7 +804,7 @@ class CPRed(commands.Cog):
 		sSelection = '\n'.join(map(str, selection))
 		await ctx.send("Congratulations {}! Please choose one prize from the following:\n\n".format(user) + sSelection)
 
-	!commands.group()
+	@commands.group()
 	async def fixer(self, ctx: commands.Context):
 		"""
 		Control fixer level for Night Market generator
