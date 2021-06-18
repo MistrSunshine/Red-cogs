@@ -753,16 +753,18 @@ class CPRed(commands.Cog):
 		await ctx.send(box("This feature is not implemented yet"))
 
 	@commands.command()
-	async def addprize(self, ctx):
+	async def addprize(self, ctx, prize: str):
 		"""Add a prize to the prize list"""
-		pz = open('/home/ubuntu/redenv/redcogs/CPRed/files/prize').readlines()
-		await self.config.prizes.set(pz)
-		await ctx.send(box("The prize list has been generated."))
+		lst = self.config.prizes() + prize
+		await self.config.prizes.set(lst)
+		await ctx.send(box("{} has been added to the prize list.".format(prize)))
 
 	@commands.command()
-	async def prize(self, ctx):
+	async def prize(self, ctx, user: discord.User):
 		"""Randomly select 3 raffle prizes"""
-		pass
+		options = await self.config.prizes()
+		selection = random.sample(options, k=3)
+		await ctx.send("Congratulations {}! Please choose one prize from the following:\n".format(user) + selection)
 
 	@commands.command()
 	async def setfixerlevel(self, ctx, level: int):
