@@ -561,13 +561,15 @@ class CPRed(commands.Cog):
 			achList = {
 				"Test": "Super cool tester"
 			},
-			lottery = [],
+			jackpot = 5000,
+			lottopool = 0,
 			prizes = []
 			)
 		self.config.register_user(
 			currentip = 0,
 			totalip = 0,
-			awarded = {}
+			awarded = {},
+			tickets = []
 			)
 
 	def foodDrugsBuild(self):
@@ -680,8 +682,14 @@ class CPRed(commands.Cog):
 		"""WIP Homebrew rule suggestion and voting system"""
 		await ctx.send(box("This feature is not yet implemented"))
 
-	@commands.command()
-	async def ip(self, ctx, user: discord.User=0):
+	@ip.group()
+	async def ip(self, ctx: commands.Context):
+		"""
+		Commands to control the Improvement Point System
+		"""
+
+	@ip.command(name="current")
+	async def ip_current(self, ctx, user: discord.User=0):
 		"""Check your characters IP balance"""
 		try:
 			# Call the config values
@@ -704,8 +712,8 @@ class CPRed(commands.Cog):
 			ip_val = sCurrentIP + ' of ' + sTotalIP
 			await ctx.send(box("You currently have {} improvement points available.".format(ip_val)))
 
-	@commands.command()
-	async def ipadd(self, ctx, user: discord.User, amount: int):
+	@ip.command(name="add")
+	async def ip_add(self, ctx, user: discord.User, amount: int):
 		"""Add IP to a user's character"""
 		# Increment the available IP
 		init_val = await self.config.user(user).currentip()
@@ -721,8 +729,8 @@ class CPRed(commands.Cog):
 		# Reply to user
 		await ctx.send(box("{} has been added to {} IP totals.".format(amount, user) + "\n\n" + "The new values are {} of {} IP.".format(new_val, new_tot)))
 
-	@commands.command()
-	async def ipuse(self, ctx, amount: int):
+	@ip.command(name="use")
+	async def ip_use(self, ctx, amount: int):
 		"""Use the IP assigned to your character"""
 		init_val = await self.config.user(ctx.author).currentip()
 		if amount <= init_val:
@@ -740,35 +748,70 @@ class CPRed(commands.Cog):
 		else:
 			await ctx.send(box("You don't have enough IP for that."))
 
-	@commands.command()
-	async def ipreset(self, ctx, user: discord.User):
+	@ip.command(name="reset")
+	async def ip_reset(self, ctx, user: discord.User):
 		"""Reset a user's IP count after death"""
 		await self.config.user(user).currentip.set(0)
 		await self.config.user(user).totalip.set(0)
 		await ctx.send(box("Improvement points have been reset for {}.".format(user)))
 
-	@commands.command()
-	async def lottery(self, ctx):
-		"""WIP Lottery system"""
-		await ctx.send(box("This feature is not implemented yet"))
+	@commands.group()
+	async def lottery(self, ctx: commands.Context):
+		"""
+		Control the Lottery system
+		"""
 
-	@commands.command()
-	async def addprize(self, ctx, prize: str):
+	@lottery.command(name="jackpot")
+	async def lottery_jackpot(self, ctx):
+		"""Get the current lottery jackpot amount"""
+		pot = await self.config.jackpot()
+		sPot = str(pot)
+		await ctx.send(box("The current jackpot is at {}.".format(sPot)))
+
+	@lottery.command(name="tickets")
+	async def lottery_tickets(self, ctx):
+		"""Check which numbers you've already bought"""
+		pass
+
+	@lottery.command(name="buy")
+	async def lottery_buy(self, ctx, number: int):
+		"""Buy a lottery ticket for 100E$"""
+		pass
+
+	@lottery.command(name="draw")
+	async def lottery_draw(self, ctx):
+		"""Draw a winning number for the lottery"""
+		pass
+
+	@commands.group()
+	async def prize(self, ctx: commands.Context):
+		"""
+		Prize selection commands
+		"""
+
+	@prize.command(name="add")
+	async def prize_add(self, ctx, prize: str):
 		"""Add a prize to the prize list"""
-		lst = self.config.prizes() + prize
+		lst = await self.config.prizes() + prize
 		await self.config.prizes.set(lst)
 		await ctx.send(box("{} has been added to the prize list.".format(prize)))
 
-	@commands.command()
-	async def prize(self, ctx, user: discord.User):
+	@prize.command(name="select")
+	async def prize_select(self, ctx, user: discord.User):
 		"""Randomly select 3 raffle prizes"""
 		options = await self.config.prizes()
 		selection = random.sample(options, k=3)
 		sSelection = '\n'.join(map(str, selection))
 		await ctx.send("Congratulations {}! Please choose one prize from the following:\n\n".format(user) + sSelection)
 
-	@commands.command()
-	async def setfixerlevel(self, ctx, level: int):
+	!commands.group()
+	async def fixer(self, ctx: commands.Context):
+		"""
+		Control fixer level for Night Market generator
+		"""
+
+	@fixer.command(name="set")
+	async def fixer_set(self, ctx, level: int):
 		"""Set the current fixer level for night market generation"""
 		await self.config.fixerLvl.set(level)
 		lvl = await self.config.fixerLvl()
@@ -776,8 +819,8 @@ class CPRed(commands.Cog):
 		# Level should probably be between 1-6
 		await ctx.send(box("The fixer is now set to level {}.".format(lvl)))
 
-	@commands.command()
-	async def fixerlevel(self, ctx):
+	@fixer.command(name="level")
+	async def fixer_level(self, ctx):
 		"""Show the current fixer level being used by the night market generator"""
 		fixer = await self.config.fixerLvl()
 		fixer = str(fixer)
@@ -848,17 +891,17 @@ class CPRed(commands.Cog):
 			sAwards = str(awards)
 			await ctx.send(box("Your current achievements are:\n" + sAwards))
 
-	@commands.command()
-	async def achievementset(self, ctx, achievement: str, desc: str):
+	@achievements.command(name="add")
+	async def achievements_add(self, ctx, achievement: str, desc: str):
 		"""Add an achievement and desc to the achievement system"""
 		achvDB = await self.config.achList()
 		achvDB[achievement] = desc
 		await self.config.achList.set(achvDB)
 		await ctx.send(box("The {} achievement has been added to the catalogue.".format(achievement)))
 
-	@commands.command()
-	async def addachievement (self, ctx, user: discord.User, achievement: str):
-		"""Add an achievement to a player"""
+	@achievements.command(name="award")
+	async def achievements_award (self, ctx, user: discord.User, achievement: str):
+		"""Award an achievement to a player"""
 		try:
 			achvDB = await self.config.achList()
 			desc = achvDB[achievement]
@@ -871,8 +914,8 @@ class CPRed(commands.Cog):
 		except:
 			await ctx.send(box("The requested achievement was not found."))
 
-	@commands.command()
-	async def listachievements (self, ctx):
+	@achievements.command(name="list")
+	async def achievements_list (self, ctx):
 		"""List available achievements"""
 		listAch = await self.config.achList()
 		await ctx.send(box("Available achievements are:\n{}".format(listAch)))
