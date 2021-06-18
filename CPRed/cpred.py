@@ -830,8 +830,14 @@ class CPRed(commands.Cog):
 		results = categories + sellItems
 		await ctx.send(box(results))
 
-	@commands.command()
-	async def achievements(self, ctx, user: discord.User=0):
+	@commands.group()
+	async def achievements(self, ctx: commands.Context):
+		"""
+		Commands to control the Achievements system.
+		"""
+
+	@achievements.command(name="unlocked")
+	async def achievements_unlocked(self, ctx, user: discord.User=0):
 		"""Display player achievements"""
 		try:
 			awards = await self.config.user(user).awarded()
@@ -871,11 +877,11 @@ class CPRed(commands.Cog):
 		listAch = await self.config.achList()
 		await ctx.send(box("Available achievements are:\n{}".format(listAch)))
 
-
 	# Informational commands
 
 	@commands.command()
 	async def source(self, ctx):
+		"""Display the GitHub URL for the CP_AI cog"""
 		await ctx.send("The CP_AI sourcecode can be found at: https://github.com/MistrSunshine/Red-cogs")
 
 	@commands.command()
