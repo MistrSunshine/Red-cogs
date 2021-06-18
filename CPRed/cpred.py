@@ -755,7 +755,7 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def addprize(self, ctx):
 		"""Add a prize to the prize list"""
-		pz = open('prize').readlines()
+		pz = open('files/prize').readlines()
 		await self.config.prizes.set(pz)
 		await ctx.send(box("The prize list has been generated."))
 
