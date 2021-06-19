@@ -1,5 +1,5 @@
 from redbot.core import Config
-from redbot.core import commands
+from redbot.core import commands, bank
 from redbot.core.utils.chat_formatting import box, bold
 
 import random
@@ -771,12 +771,27 @@ class CPRed(commands.Cog):
 	@lottery.command(name="tickets")
 	async def lottery_tickets(self, ctx):
 		"""Check which numbers you've already bought"""
-		pass
+		ticks = await self.config.user(ctx.author).tickets()
+		sTicks = str(ticks)
+		await ctx.send("{} currently has tickets: {}".format(ctx.author, sTicks))
 
 	@lottery.command(name="buy")
-	async def lottery_buy(self, ctx, number: int):
+	async def lottery_buy(self, ctx, number: int=0):
 		"""Buy a lottery ticket for 100E$"""
-		pass
+		if await bank.can_spend(ctx.author, 100):
+			if number == 0:
+				number = random.randint(1, 99)
+			await bank.withdraw_credits(ctx.author, 100)
+			pool = await self.config.lottopool()
+			pool = pool + 100
+			await self.config.lottopool.set(pool)
+			nmbrs = await self.config.user(ctx.author).tickets()
+			nmbrs.append(number)
+			await self.config.user(ctx.author).tickets.set(nmbrs)
+			sNumber = str(number)
+			await ctx.send(box("You have purchased a ticket with the number: {}".format(sNumber)))
+		else:
+			await ctx.send(box("You do not appear to have enough E$ to purchase a lottery ticket. Tickets are 100E$ each."))
 
 	@lottery.command(name="draw")
 	async def lottery_draw(self, ctx):
