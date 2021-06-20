@@ -1045,4 +1045,5 @@ class CPRed(commands.Cog):
 		test = await self.config.all_users()
 		key = test.keys()
 		sTest = str(test)
-		await ctx.send(sTest + "\n" + key)
+		sKey = str(key)
+		await ctx.send(sTest + "\n" + sKey)
