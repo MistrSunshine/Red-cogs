@@ -1049,11 +1049,13 @@ class CPRed(commands.Cog):
 		win = []
 		for member in key:
 			user = self.bot.get_user(member)
-			await ctx.send(user)
-			numbs = await self.config.user_from_id(member).tickets()
+			#await ctx.send(user)
+			numbs = await self.config.user(user).tickets()
+			#numbs = await self.config.user_from_id(member).tickets()
 			#await ctx.send(numbs)
 			if 8 in numbs:
-				win.append(self.bot.get_user(member))
+				win.append(user)
+				#win.append(self.bot.get_user(member))
 		sWin = str(win)
 		await ctx.send("The winners are: {}".format(sWin))
 		#await ctx.send(sTest + "\n" + sKey)
