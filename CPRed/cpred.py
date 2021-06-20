@@ -1050,7 +1050,7 @@ class CPRed(commands.Cog):
 		for member in key:
 			user = self.bot.get_user(member)
 			#name = user
-			#await ctx.send(user)
+			await ctx.send(user)
 			numbs = await self.config.user(user).tickets()
 			#numbs = await self.config.user_from_id(member).tickets()
 			#await ctx.send(numbs)
