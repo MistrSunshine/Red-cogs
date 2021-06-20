@@ -1051,11 +1051,12 @@ class CPRed(commands.Cog):
 			user = self.bot.get_user(member)
 			#name = user
 			await ctx.send(user)
+			await ctx.send("Test: {}".format(user))
 			numbs = await self.config.user(user).tickets()
 			#numbs = await self.config.user_from_id(member).tickets()
 			#await ctx.send(numbs)
 			if 69 in numbs:
-				win.append(user)
+				win.append(str(user))
 				#win.append(self.bot.get_user(member))
 		sWin = str(win)
 		await ctx.send("The winners are: {}".format(win))
