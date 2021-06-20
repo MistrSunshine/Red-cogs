@@ -1044,4 +1044,5 @@ class CPRed(commands.Cog):
 		"""Basic debugging function"""
 		test = await self.config.all_users()
 		key = test.keys()
-		await ctx.send(test + "\n" + key)
+		sTest = str(test)
+		await ctx.send(sTest + "\n" + key)
