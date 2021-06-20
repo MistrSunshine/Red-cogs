@@ -796,7 +796,7 @@ class CPRed(commands.Cog):
 	@lottery.command(name="draw")
 	async def lottery_draw(self, ctx):
 		"""Draw a winning number for the lottery"""
-		pass
+		winNum = random.randint(1, 99)
 
 	@commands.group()
 	async def prize(self, ctx: commands.Context):
@@ -1037,3 +1037,9 @@ class CPRed(commands.Cog):
 			await ctx.send(box("**Drugs of Cyberpunk Red**\n1.Black Lace\t6.Alcohol\n2.Blue Glass\t7.Rohypnol\n3.Boost\n4.Smash\n5.Synthcoke"))
 			await ctx.send("For more information about a particular drug, run the !drugs command with the drug number at the end.")
 			await ctx.send(bold("(Ex. !drugs 3)"))
+
+	@commands.command()
+	async def test(self, ctx):
+		"""Basic debugging function"""
+		test = await self.config.all_members(guild=121779983197667328)
+		await ctx.send(test)
