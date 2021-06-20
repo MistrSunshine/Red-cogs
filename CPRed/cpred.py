@@ -1048,7 +1048,7 @@ class CPRed(commands.Cog):
 		sKey = str(key)
 		win = []
 		for member in key:
-			numbs = await self.config.user(member).tickets()
+			numbs = await self.config.user_from_id(member).tickets()
 			if numbs == 69:
 				win = win + member
 		sWin = str(win)
