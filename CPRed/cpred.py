@@ -1049,14 +1049,14 @@ class CPRed(commands.Cog):
 		win = []
 		for member in key:
 			user = self.bot.get_user(member)
-			name = user
+			#name = user
 			#await ctx.send(user)
 			numbs = await self.config.user(user).tickets()
 			#numbs = await self.config.user_from_id(member).tickets()
 			#await ctx.send(numbs)
 			if 69 in numbs:
-				win.append(name)
+				win.append(user)
 				#win.append(self.bot.get_user(member))
 		sWin = str(win)
-		await ctx.send("The winners are: {}".format(sWin))
+		await ctx.send("The winners are: {}".format(win))
 		#await ctx.send(sTest + "\n" + sKey)
