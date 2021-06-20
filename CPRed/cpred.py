@@ -1041,5 +1041,5 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def test(self, ctx):
 		"""Basic debugging function"""
-		test = await self.config.all_members()
+		test = await self.config.all_users()
 		await ctx.send(test)
