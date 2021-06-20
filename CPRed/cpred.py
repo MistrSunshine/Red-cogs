@@ -1048,10 +1048,10 @@ class CPRed(commands.Cog):
 		sKey = str(key)
 		win = []
 		for member in key:
-			await ctx.send(member)
+			#await ctx.send(member)
 			numbs = await self.config.user_from_id(member).tickets()
-			await ctx.send(numbs)
-			if numbs == 69:
+			#await ctx.send(numbs)
+			if 69 in numbs:
 				win = win + member
 		sWin = str(win)
 		await ctx.send("The winners are: {}".format(sWin))
