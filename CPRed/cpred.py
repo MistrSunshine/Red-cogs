@@ -1052,7 +1052,7 @@ class CPRed(commands.Cog):
 			numbs = await self.config.user_from_id(member).tickets()
 			#await ctx.send(numbs)
 			if 69 in numbs:
-				win = win + member
+				win.append(member)
 		sWin = str(win)
 		await ctx.send("The winners are: {}".format(sWin))
 		#await ctx.send(sTest + "\n" + sKey)
