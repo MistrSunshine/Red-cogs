@@ -797,6 +797,7 @@ class CPRed(commands.Cog):
 	async def lottery_draw(self, ctx):
 		"""Draw a winning number for the lottery"""
 		winNum = random.randint(1, 99)
+		users = await self.config.all_users()
 
 	@commands.group()
 	async def prize(self, ctx: commands.Context):
@@ -1041,5 +1042,6 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def test(self, ctx):
 		"""Basic debugging function"""
-		test = await self.config.all_users(tickets)
-		await ctx.send(test)
+		test = await self.config.all_users()
+		key = test.keys()
+		await ctx.send(test + "\n" + key)
