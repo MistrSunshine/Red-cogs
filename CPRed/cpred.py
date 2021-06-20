@@ -1,5 +1,5 @@
 from redbot.core import Config
-from redbot.core import commands, bank
+from redbot.core import commands, bank, bot
 from redbot.core.utils.chat_formatting import box, bold
 
 import random
@@ -1052,7 +1052,7 @@ class CPRed(commands.Cog):
 			numbs = await self.config.user_from_id(member).tickets()
 			#await ctx.send(numbs)
 			if 8 in numbs:
-				win.append(member)
+				win.append(bot.get_user(member))
 		sWin = str(win)
 		await ctx.send("The winners are: {}".format(sWin))
 		#await ctx.send(sTest + "\n" + sKey)
