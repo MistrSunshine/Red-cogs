@@ -1062,7 +1062,8 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def test(self, ctx):
 		"""Basic debugging function"""
-		winNum = random.randint(1, 99)
+		#winNum = random.randint(1, 99)
+		winNum = 8
 		users = await self.config.all_users()
 		key = users.keys()
 		win = []
@@ -1075,6 +1076,7 @@ class CPRed(commands.Cog):
 		if len(win) < 1:
 			jp += await self.config.lottopool()
 			await self.config.jackpot.set(jp)
+			await self.config.lottopool.set(0)
 			await ctx.send(box("The winning number was: {}. There were no winners this drawing. The new jackpot is {}E$!".format(str(winNum), str(jp))))
 		else:
 			winnings = int(jp / len(win))
@@ -1082,5 +1084,6 @@ class CPRed(commands.Cog):
 				await bank.deposit_credits(winner, winnings)
 			new = 5000 + await self.config.lottopool()
 			await self.config.jackpot.set(new)
+			await self.config.lottopool.set(0)
 			await ctx.send("The winning number was: {}. The winners of this drawing were: {}. Each winner won {}E$.".format(str(winNum), win, winnings))
 			await ctx.send("Next weeks jackpot is set at {}E$.".format(new))
