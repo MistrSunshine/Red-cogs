@@ -798,6 +798,26 @@ class CPRed(commands.Cog):
 		"""Draw a winning number for the lottery"""
 		winNum = random.randint(1, 99)
 		users = await self.config.all_users()
+		key = users.keys()
+		win = []
+		jp = await self.config.jackpot()
+		for member in key:
+			name = self.bot.get_user(member)
+			ticks = await self.config.user(name).tickets()
+			if winNum in ticks:
+				win.append(name)
+		if len(win) < 1:
+			jp += await self.config.lottopool()
+			await self.config.jackpot.set(jp)
+			await ctx.send(box("There were no winners this drawing. The new jackpot is {}E$!".format(str(jp))))
+		else:
+			winnings = jp / len(win)
+			for winner in win:
+				await bank.deposit_credits(winner, winnings)
+			new = 5000 + await self.config.lottopool()
+			await self.config.jackpot.set(new)
+			await ctx.send("The winners of this drawing were: {}. Each winner won {}E$.".format(win, winnings))
+			await ctx.send("Next weeks jackpot is set at {}E$.".format(new))
 
 	@commands.group()
 	async def prize(self, ctx: commands.Context):
@@ -1042,22 +1062,25 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def test(self, ctx):
 		"""Basic debugging function"""
-		test = await self.config.all_users()
-		key = test.keys()
-		sTest = str(test)
-		sKey = str(key)
+		winNum = random.randint(1, 99)
+		users = await self.config.all_users()
+		key = users.keys()
 		win = []
+		jp = await self.config.jackpot()
 		for member in key:
-			user = self.bot.get_user(member)
-			#name = user
-			await ctx.send(user)
-			await ctx.send("Test: {}".format(user))
-			numbs = await self.config.user(user).tickets()
-			#numbs = await self.config.user_from_id(member).tickets()
-			#await ctx.send(numbs)
-			if 69 in numbs:
-				win.append(str(user))
-				#win.append(self.bot.get_user(member))
-		sWin = str(win)
-		await ctx.send("The winners are: {}".format(win))
-		#await ctx.send(sTest + "\n" + sKey)
+			name = self.bot.get_user(member)
+			ticks = await self.config.user(name).tickets()
+			if winNum in ticks:
+				win.append(name)
+		if len(win) < 1:
+			jp += await self.config.lottopool()
+			await self.config.jackpot.set(jp)
+			await ctx.send(box("There were no winners this drawing. The new jackpot is {}E$!".format(str(jp))))
+		else:
+			winnings = jp / len(win)
+			for winner in win:
+				await bank.deposit_credits(winner, winnings)
+			new = 5000 + await self.config.lottopool()
+			await self.config.jackpot.set(new)
+			await ctx.send("The winners of this drawing were: {}. Each winner won {}E$.".format(win, winnings))
+			await ctx.send("Next weeks jackpot is set at {}E$.".format(new))
