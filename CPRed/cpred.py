@@ -1075,6 +1075,8 @@ class CPRed(commands.Cog):
 			if winNum in ticks:
 				win.append(name)
 				sWin.append(str(name))
+			clr = []
+			await self.config.user(name).tickets.set(clr)
 		if len(win) < 1:
 			jp += await self.config.lottopool()
 			await self.config.jackpot.set(jp)
