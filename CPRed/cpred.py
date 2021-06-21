@@ -1067,12 +1067,14 @@ class CPRed(commands.Cog):
 		users = await self.config.all_users()
 		key = users.keys()
 		win = []
+		sWin = []
 		jp = await self.config.jackpot()
 		for member in key:
 			name = self.bot.get_user(member)
 			ticks = await self.config.user(name).tickets()
 			if winNum in ticks:
 				win.append(name)
+				sWin.append(str(name))
 		if len(win) < 1:
 			jp += await self.config.lottopool()
 			await self.config.jackpot.set(jp)
@@ -1085,5 +1087,5 @@ class CPRed(commands.Cog):
 			new = 5000 + await self.config.lottopool()
 			await self.config.jackpot.set(new)
 			await self.config.lottopool.set(0)
-			await ctx.send("The winning number was: {}. The winners of this drawing were: {}. Each winner won {}E$.".format(str(winNum), win, winnings))
+			await ctx.send("The winning number was: {}. The winners of this drawing were: {}. Each winner won {}E$.".format(str(winNum), sWin, winnings))
 			await ctx.send("Next weeks jackpot is set at {}E$.".format(new))
