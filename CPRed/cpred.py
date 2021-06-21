@@ -1077,7 +1077,7 @@ class CPRed(commands.Cog):
 			await self.config.jackpot.set(jp)
 			await ctx.send(box("The winning number was: {}. There were no winners this drawing. The new jackpot is {}E$!".format(str(winNum), str(jp))))
 		else:
-			winnings = jp / len(win)
+			winnings = int(jp / len(win))
 			for winner in win:
 				await bank.deposit_credits(winner, winnings)
 			new = 5000 + await self.config.lottopool()
