@@ -800,23 +800,29 @@ class CPRed(commands.Cog):
 		users = await self.config.all_users()
 		key = users.keys()
 		win = []
+		sWin = []
 		jp = await self.config.jackpot()
 		for member in key:
 			name = self.bot.get_user(member)
 			ticks = await self.config.user(name).tickets()
 			if winNum in ticks:
 				win.append(name)
+				sWin.append(str(name))
+			clr = []
+			await self.config.user(name).tickets.set(clr)
 		if len(win) < 1:
 			jp += await self.config.lottopool()
 			await self.config.jackpot.set(jp)
-			await ctx.send(box("There were no winners this drawing. The new jackpot is {}E$!".format(str(jp))))
+			await self.config.lottopool.set(0)
+			await ctx.send(box("The winning number was: {}. There were no winners this drawing. The new jackpot is {}E$!".format(str(winNum), str(jp))))
 		else:
-			winnings = jp / len(win)
+			winnings = int(jp / len(win))
 			for winner in win:
 				await bank.deposit_credits(winner, winnings)
 			new = 5000 + await self.config.lottopool()
 			await self.config.jackpot.set(new)
-			await ctx.send("The winners of this drawing were: {}. Each winner won {}E$.".format(win, winnings))
+			await self.config.lottopool.set(0)
+			await ctx.send("The winning number was: {}. The winners of this drawing were: {}. Each winner won {}E$.".format(str(winNum), sWin, winnings))
 			await ctx.send("Next weeks jackpot is set at {}E$.".format(new))
 
 	@commands.group()
@@ -1062,32 +1068,4 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def test(self, ctx):
 		"""Basic debugging function"""
-		#winNum = random.randint(1, 99)
-		winNum = 8
-		users = await self.config.all_users()
-		key = users.keys()
-		win = []
-		sWin = []
-		jp = await self.config.jackpot()
-		for member in key:
-			name = self.bot.get_user(member)
-			ticks = await self.config.user(name).tickets()
-			if winNum in ticks:
-				win.append(name)
-				sWin.append(str(name))
-			clr = []
-			await self.config.user(name).tickets.set(clr)
-		if len(win) < 1:
-			jp += await self.config.lottopool()
-			await self.config.jackpot.set(jp)
-			await self.config.lottopool.set(0)
-			await ctx.send(box("The winning number was: {}. There were no winners this drawing. The new jackpot is {}E$!".format(str(winNum), str(jp))))
-		else:
-			winnings = int(jp / len(win))
-			for winner in win:
-				await bank.deposit_credits(winner, winnings)
-			new = 5000 + await self.config.lottopool()
-			await self.config.jackpot.set(new)
-			await self.config.lottopool.set(0)
-			await ctx.send("The winning number was: {}. The winners of this drawing were: {}. Each winner won {}E$.".format(str(winNum), sWin, winnings))
-			await ctx.send("Next weeks jackpot is set at {}E$.".format(new))
+		await ctx.send("No test code loaded at the moment.")
