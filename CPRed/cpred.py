@@ -679,7 +679,7 @@ class CPRed(commands.Cog):
 		await ctx.send(box("The time for the next scheduled game is set to {}.".format(time)))
 
 	@commands.command()
-	async def homebrew(self, ctx, task: str):
+	async def homebrew(self, ctx):
 		"""WIP Homebrew rule suggestion and voting system"""
 		embed=discord.Embed(title="Active Homebrew Rules", description="Homebrew rules being used for our CP Red games", color=0xff0f13)
 		embed.add_field(name="Advantage/Disadvantage Rolls", value="When performing actions in stealth or before detected, players will perform two checks and use the higher of the two rolls. Alternatively, if the player is surprised, they may roll twice and take the lower roll.", inline=False)
