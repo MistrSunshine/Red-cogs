@@ -1024,6 +1024,7 @@ class CPRed(commands.Cog):
 		embed.add_field(name="!nightmarket", value="Generate a random night market encounter.", inline=False)
 		embed.add_field(name="!nextgame", value="Display the next scheduled games date and time.", inline=False)
 		embed.add_field(name="!roll [amount]d[sides]", value="Roll [amount] dice with [sides]. Ex. !roll 2d13", inline=False)
+		embed.add_field(name="!homebrew", value="List the current implemented home rules for our game.", inline=False)
 		embed.add_field(name="!roles", value="Show available character roles included with Cyberpunk Red.", inline=False)
 		embed.add_field(name="!homes", value="Show available homes with corresponding prices.", inline=False)
 		embed.add_field(name="!drugs", value="Show available drugs included with Cyberpunk Red.", inline=False)
