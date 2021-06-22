@@ -970,6 +970,7 @@ class CPRed(commands.Cog):
 		"""Display the GitHub URL for the CP_AI cog"""
 		await ctx.send("The CP_AI sourcecode can be found at: https://github.com/MistrSunshine/Red-cogs")
 
+	@commands.command()
 	async def commands(self, ctx):
 		"""Lists relevant user commands"""
 		# Money
