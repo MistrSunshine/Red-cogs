@@ -681,7 +681,10 @@ class CPRed(commands.Cog):
 	@commands.command()
 	async def homebrew(self, ctx, task: str):
 		"""WIP Homebrew rule suggestion and voting system"""
-		await ctx.send(box("This feature is not yet implemented"))
+		embed=discord.Embed(title="Active Homebrew Rules", description="Homebrew rules being used for our CP Red games", color=0xff0f13)
+		embed.add_field(name="Advantage/Disadvantage Rolls", value="When performing actions in stealth or before detected, players will perform two checks and use the higher of the two rolls. Alternatively, if the player is surprised, they may roll twice and take the lower roll.", inline=False)
+		embed.set_footer(text="Suggest homebrew rules to make our games more exciting with the !suggest command.")
+		await ctx.send(embed=embed)
 
 	@commands.group()
 	async def ip(self, ctx: commands.Context):
