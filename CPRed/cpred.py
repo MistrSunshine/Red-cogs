@@ -1,6 +1,7 @@
 from redbot.core import Config
 from redbot.core import commands, bank, bot
-from redbot.core.utils.chat_formatting import box, bold, embed
+from redbot.core.utils.chat_formatting import box, bold
+from redbot.core.utils import embed
 
 import random
 import discord
