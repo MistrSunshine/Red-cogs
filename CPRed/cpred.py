@@ -971,7 +971,7 @@ class CPRed(commands.Cog):
 		await ctx.send("The CP_AI sourcecode can be found at: https://github.com/MistrSunshine/Red-cogs")
 
 	@commands.command()
-	async def commands(self, ctx):
+	async def cmds(self, ctx):
 		"""Lists relevant user commands"""
 		# Money
 		embed=discord.Embed(title="~ E$ Money E$ ~", description="Commands to control your E$", color=0xcaf0fe)
