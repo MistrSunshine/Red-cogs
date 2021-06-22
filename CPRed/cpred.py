@@ -1,6 +1,6 @@
 from redbot.core import Config
 from redbot.core import commands, bank, bot
-from redbot.core.utils.chat_formatting import box, bold
+from redbot.core.utils.chat_formatting import box, bold, embed
 
 import random
 import discord
@@ -968,6 +968,68 @@ class CPRed(commands.Cog):
 	async def source(self, ctx):
 		"""Display the GitHub URL for the CP_AI cog"""
 		await ctx.send("The CP_AI sourcecode can be found at: https://github.com/MistrSunshine/Red-cogs")
+
+	async def commands(self, ctx):
+		"""Lists relevant user commands"""
+		# Money
+		embed=discord.Embed(title="~ E$ Money E$ ~", description="Commands to control your E$", color=0xcaf0fe)
+		embed.set_author(name="CP_AI", icon_url="https://cdn.discordapp.com/avatars/848331788270436372/d274fe90da1a000a4446401f3b73719b.png?size=1024")
+		embed.set_thumbnail(url="https://ih1.redbubble.net/image.647035563.7656/st,small,845x845-pad,1000x1000,f8f8f8.u6.jpg")
+		embed.add_field(name="!payday", value="Collect 200E$ from doing sidejobs during the week. This can be activated every 7 days.", inline=True)
+		embed.add_field(name="!bank balance", value="Check your E$ balance, optionally, add a user at the end to check their balance.", inline=True)
+		embed.add_field(name="!bank transfer [user] [amount]", value="Transfer [amount] of E$ from your account to [user].", inline=True)
+		await ctx.send(embed=embed)
+		# Gambling
+		embed=discord.Embed(title="~ Gambling ~", description="Commands to win big or lose all your E$", color=0x94e3fe)
+		embed.set_author(name="CP_AI", icon_url="https://cdn.discordapp.com/avatars/848331788270436372/d274fe90da1a000a4446401f3b73719b.png?size=1024")
+		embed.set_thumbnail(url="https://playlincoln.com/wp-content/uploads/2019/10/AdobeStock_290994991.jpeg")
+		embed.add_field(name="!slot [bet]", value="Play a slot machine (bet 5-100).", inline=True)
+		embed.add_field(name="!allin [multiplier]", value="Bet all your money. The higher the [multiplier] the worse your odds.", inline=True)
+		embed.add_field(name="!blackjack [bet]", value="Play a game of blackjack (bet 50-500).", inline=True)
+		embed.add_field(name="!coin [bet] [choice]", value="Flip a coin with a 50/50 chance. (bet 5-20) (choose heads or tails).", inline=True)
+		embed.add_field(name="!craps [bet]", value="Play a modified version of craps (bet 50-500).", inline=True)
+		embed.add_field(name="!cups [bet] [cup]", value="Guess the cup hiding the coin (bet 25-100) (cup = 1, 2, or 3)", inline=True)
+		embed.add_field(name="!dice [bet]", value="Roll dice and win on a 2, 7, 11, and 12 (bet 25-100).", inline=True)
+		embed.add_field(name="!double [bet]", value="Play a game of double or nothing (bet 10-250).", inline=True)
+		embed.add_field(name="!hilo [bet] [choice]", value="Pick high, low, or 7 of a dice roll (bet 25-75) (choice = high, low, or 7).", inline=True)
+		embed.add_field(name="!War [bet]", value="Play a modified game of war (bet 25-75).", inline=True)
+		await ctx.send(embed=embed)
+		# Lottery
+		embed=discord.Embed(title="~ Lottery ~", description="All that E$ sitting out there with no owner", color=0x53d5fd)
+		embed.set_author(name="CP_AI", icon_url="https://cdn.discordapp.com/avatars/848331788270436372/d274fe90da1a000a4446401f3b73719b.png?size=1024")
+		embed.set_thumbnail(url="https://www.wikihow.com/images/thumb/2/28/Choose-Lottery-Numbers-Step-20-Version-3.jpg/aid684371-v4-1200px-Choose-Lottery-Numbers-Step-20-Version-3.jpg")
+		embed.add_field(name="!lottery buy [number]", value="Buy a lottery ticket with [number]. If no number is provided, a random number is chosen. (number between 1-99)", inline=True)
+		embed.add_field(name="!lottery jackpot", value="Show the current lottery jackpot.", inline=True)
+		embed.add_field(name="!lottery tickets", value="Show a list of your current lottery tickets.", inline=True)
+		await ctx.send(embed=embed)
+		# IP
+		embed=discord.Embed(title="~ Improvement Points ~", description="Get that power level over 9000!", color=0x00c7fc)
+		embed.set_author(name="CP_AI", icon_url="https://cdn.discordapp.com/avatars/848331788270436372/d274fe90da1a000a4446401f3b73719b.png?size=1024")
+		embed.set_thumbnail(url="https://cdn1.vectorstock.com/i/1000x1000/13/00/level-up-neon-text-level-up-neon-sign-vector-22241300.jpg")
+		embed.add_field(name="!ip current", value="Show your character's current IP.", inline=True)
+		embed.add_field(name="!ip use [amount]", value="Spend [amount] of IP to improve your character.", inline=True)
+		await ctx.send(embed=embed)
+		# General
+		embed=discord.Embed(title="~ General ~", description="A list of general commands.", color=0x00a3d7)
+		embed.set_author(name="CP_AI", icon_url="https://cdn.discordapp.com/avatars/848331788270436372/d274fe90da1a000a4446401f3b73719b.png?size=1024")
+		embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Information.svg/1024px-Information.svg.png")
+		embed.add_field(name="!source", value="Display a link to the bot GitHub repository.", inline=True)
+		embed.add_field(name="!achievements unlocked", value="Display a list of your player achievements, optionally, add a user at the end to check their achievements.", inline=True)
+		embed.add_field(name="!fixer level", value="Shows the current level of the crews fixer.", inline=True)
+		embed.add_field(name="!nightmarket", value="Generate a random night market encounter.", inline=True)
+		embed.add_field(name="!nextgame", value="Display the next scheduled games date and time.", inline=True)
+		embed.add_field(name="!roll [amount]d[sides]", value="Roll [amount] dice with [sides]. Ex. !roll 2d13", inline=True)
+		embed.add_field(name="!roles", value="Show available character roles included with Cyberpunk Red.", inline=True)
+		embed.add_field(name="!homes", value="Show available homes with corresponding prices.", inline=True)
+		embed.add_field(name="!drugs", value="Show available drugs included with Cyberpunk Red.", inline=True)
+		await ctx.send(embed=embed)
+		# Help
+		embed=discord.Embed(title="~ Help ~", description="Having trouble? Check here.", color=0x008cb4)
+		embed.set_author(name="CP_AI", icon_url="https://cdn.discordapp.com/avatars/848331788270436372/d274fe90da1a000a4446401f3b73719b.png?size=1024")
+		embed.set_thumbnail(url="https://contenthub-static.grammarly.com/blog/wp-content/uploads/2018/05/how-to-ask-for-help-437x230.jpg")
+		embed.add_field(name="!help [command]", value="Get helpful information about a [command]. Ex. !help homes", inline=True)
+		embed.add_field(name="!contact [message]", value="If you have other questions about a commands or use, send a [message] to the bot owner.", inline=True)
+		await ctx.send(embed=embed)
 
 	@commands.command()
 	async def roles(self, ctx, select=0):
