@@ -983,6 +983,10 @@ class CPRed(commands.Cog):
 		embed.add_field(name="!payday", value="Collect 200E$ from doing sidejobs during the week. This can be activated every 7 days.", inline=False)
 		embed.add_field(name="!bank balance", value="Check your E$ balance, optionally, add a user at the end to check their balance.", inline=False)
 		embed.add_field(name="!bank transfer [user] [amount]", value="Transfer [amount] of E$ from your account to [user].", inline=False)
+		embed.add_field(name="!stocks list", value="List the stocks you currently own.", inline=False)
+		embed.add_field(name="!stocks price [name]", value="Show the price of stock [name].", inline=False)
+		embed.add_field(name="!stocks buy [name] [shares]", value="Buy [shares] shares of stock [name].", inline=False)
+		embed.add_field(name="!stocks sell [name] [shares]", value="Sell [shares] shares of stock [name].", inline=False)
 		await ctx.send(embed=embed)
 		# Gambling
 		embed=discord.Embed(title="~ Gambling ~", description="Commands to win big or lose all your E$", color=0x94e3fe)
