@@ -665,6 +665,7 @@ class CPRed(commands.Cog):
 		await ctx.send(box("The next game is scheduled for {}".format(next_val)))
 
 	@commands.command()
+	@checks.is_owner()
 	async def setnextdate(self, ctx, new_value):
 		"""Set the date for the next scheduled game"""
 		await self.config.nextDate.set(new_value)
@@ -672,6 +673,7 @@ class CPRed(commands.Cog):
 		await ctx.send(box("The next scheduled game date has been set to {}.".format(date)))
 
 	@commands.command()
+	@checks.is_owner()
 	async def setnexttime(self, ctx, new_value):
 		"""Set the time for the next scheduled game"""
 		await self.config.nextTime.set(new_value)
@@ -717,6 +719,7 @@ class CPRed(commands.Cog):
 			await ctx.send(box("You currently have {} improvement points available.".format(ip_val)))
 
 	@ip.command(name="add")
+	@checks.is_owner()
 	async def ip_add(self, ctx, user: discord.User, amount: int):
 		"""Add IP to a user's character"""
 		# Increment the available IP
@@ -753,6 +756,7 @@ class CPRed(commands.Cog):
 			await ctx.send(box("You don't have enough IP for that."))
 
 	@ip.command(name="reset")
+	@checks.is_owner()
 	async def ip_reset(self, ctx, user: discord.User):
 		"""Reset a user's IP count after death"""
 		await self.config.user(user).currentip.set(0)
@@ -798,6 +802,7 @@ class CPRed(commands.Cog):
 			await ctx.send(box("You do not appear to have enough E$ to purchase a lottery ticket. Tickets are 100E$ each."))
 
 	@lottery.command(name="draw")
+	@checks.is_owner()
 	async def lottery_draw(self, ctx):
 		"""Draw a winning number for the lottery"""
 		winNum = random.randint(1, 99)
@@ -836,6 +841,7 @@ class CPRed(commands.Cog):
 		"""
 
 	@prize.command(name="add")
+	@checks.is_owner()
 	async def prize_add(self, ctx, prize: str):
 		"""Add a prize to the prize list"""
 		lst = await self.config.prizes() + prize
@@ -843,6 +849,7 @@ class CPRed(commands.Cog):
 		await ctx.send(box("{} has been added to the prize list.".format(prize)))
 
 	@prize.command(name="select")
+	@checks.is_owner()
 	async def prize_select(self, ctx, user: discord.User):
 		"""Randomly select 3 raffle prizes"""
 		options = await self.config.prizes()
@@ -857,6 +864,7 @@ class CPRed(commands.Cog):
 		"""
 
 	@fixer.command(name="set")
+	@checks.is_owner
 	async def fixer_set(self, ctx, level: int):
 		"""Set the current fixer level for night market generation"""
 		await self.config.fixerLvl.set(level)
@@ -938,6 +946,7 @@ class CPRed(commands.Cog):
 			await ctx.send(box("Your current achievements are:\n" + sAwards))
 
 	@achievements.command(name="add")
+	@checks.is_owner()
 	async def achievements_add(self, ctx, achievement: str, desc: str):
 		"""Add an achievement and desc to the achievement system"""
 		achvDB = await self.config.achList()
@@ -946,6 +955,7 @@ class CPRed(commands.Cog):
 		await ctx.send(box("The {} achievement has been added to the catalogue.".format(achievement)))
 
 	@achievements.command(name="award")
+	@checks.is_owner()
 	async def achievements_award (self, ctx, user: discord.User, achievement: str):
 		"""Award an achievement to a player"""
 		try:
@@ -974,6 +984,7 @@ class CPRed(commands.Cog):
 		await ctx.send("The CP_AI sourcecode can be found at: https://github.com/MistrSunshine/Red-cogs")
 
 	@commands.command()
+	@checks.is_owner()
 	async def cmds(self, ctx):
 		"""Lists relevant user commands"""
 		# Money
@@ -1046,58 +1057,58 @@ class CPRed(commands.Cog):
 		"""List the available roles in Cyberpunk Red"""
 		if select == 1:
 			await ctx.send(bold("~~Rockerboys/Rockergirls~~"))
-			await ctx.send("Rock-and-roll rebels who use performance, art, and rhetoric to fight authority.")
+			await ctx.send("Rock-and-roll rebels who use performance, art, and rhetoric to fight authority. (p.30)")
 			await ctx.send(bold("Role Ability: Charismatic Impact"))
 			await ctx.send("With this ability, they can influence others by sheer presence of personality.")
 		elif select == 2:
 			await ctx.send(bold("~~Netrunners~~"))
-			await ctx.send("Cybernetic master hackers of the post-NET world and brain-burning secret stealers.")
+			await ctx.send("Cybernetic master hackers of the post-NET world and brain-burning secret stealers. (p.32)")
 			await ctx.send(bold("Role Ability: Interface"))
 			await ctx.send("Allows them to interface with cyberdecks to control computers, electronics, and associated programming.")
 		elif select == 3:
 			await ctx.send(bold("~~Medtechs~~"))
-			await ctx.send("Unsanctioned street doctors and cyberware medics, patching up meat and metal alike.")
+			await ctx.send("Unsanctioned street doctors and cyberware medics, patching up meat and metal alike. (p.34)")
 			await ctx.send(bold("Role Ability: Medicine"))
 			await ctx.send("Can keep people alive who should be dead with their knowledge, tools, and training.")
 		elif select == 4:
 			await ctx.send(bold("~~Execs~~"))
-			await ctx.send("Corporate power brokers and business raiders fighting to restore the rule of the Megacorps.")
+			await ctx.send("Corporate power brokers and business raiders fighting to restore the rule of the Megacorps. (p.36)")
 			await ctx.send(bold("Role Ability: Teamwork"))
 			await ctx.send("Builds a team whose members help them accomplish their goals, whether legal or not, morale permitting.")
 		elif select == 5:
 			await ctx.send(bold("~~Fixers~~"))
-			await ctx.send("Dealmakers, organizers, and information brokers in the post-War Midnight Markets of The Street.")
+			await ctx.send("Dealmakers, organizers, and information brokers in the post-War Midnight Markets of The Street. (p.38)")
 			await ctx.send(bold("Role Ability: Operator"))
 			await ctx.send("Know how to get things on the black market and are adept at navigating the complex social customs of The Street.")
 		elif select == 6:
 			await ctx.send(bold("~~Solos~~"))
-			await ctx.send("Assassins, bodyguards, killers, and soldiers-for-hire in a lawless new world.")
+			await ctx.send("Assassins, bodyguards, killers, and soldiers-for-hire in a lawless new world. (p.31)")
 			await ctx.send(bold("Role Ability: Combat Awareness"))
 			await ctx.send("Can call up their training to have an enhanced situational awareness of the battlefield.")
 		elif select == 7:
 			await ctx.send(bold("~~Techs~~"))
-			await ctx.send("Renegade mechanics and supertech inventors; the people who make the Dark Future run.")
+			await ctx.send("Renegade mechanics and supertech inventors; the people who make the Dark Future run. (p.33)")
 			await ctx.send(bold("Role Ability: Maker"))
 			await ctx.send("Can fix, improve, modify, make, and invent new items.")
 		elif select == 8:
 			await ctx.send(bold("~~Medias~~"))
-			await ctx.send("Reporters, media stars, and social influencers risking it all for the truth - or glory.")
+			await ctx.send("Reporters, media stars, and social influencers risking it all for the truth - or glory. (p.35)")
 			await ctx.send(bold("Role Ability: Credibility"))
 			await ctx.send("Have greater levels of access to sources and information; they are always picking up rumors and information passively.")
 		elif select == 9:
 			await ctx.send(bold("~~Lawmen/Law-women~~"))
-			await ctx.send("Maximum law enforcers patrolling the mean streets and barbarian warrior highways beyond.")
+			await ctx.send("Maximum law enforcers patrolling the mean streets and barbarian warrior highways beyond. (p.37)")
 			await ctx.send(bold("Role Ability: Backup"))
 			await ctx.send("Can call upon the help of a group of fellow officers, based on rank and conditions.")
 		elif select == 10:
 			await ctx.send(bold("~~Nomad~~"))
-			await ctx.send("Transport experts, ultimate road warriors, pirates, and smugglers who keep the world connected.")
+			await ctx.send("Transport experts, ultimate road warriors, pirates, and smugglers who keep the world connected. (p.39)")
 			await ctx.send(bold("Role Ability: Moto"))
 			await ctx.send("Able to drive any type of vehicle with tremendous skill.")
 		else:
 			await ctx.send(box("**Roles of Cyberpunk Red**\n1.Rockerboys\t6.Solos\n2.Netrunners\t7.Techs\n3.Medtechs\t  8.Medias\n4.Execs\t\t 9.Lawmen\n5.Fixers\t\t10.Nomads"))
 			await ctx.send("For more information about a particular role, run the !roles command with the role number at the end.")
-			await ctx.send(bold("(Ex. !roles 3)"))
+			await ctx.send(bold("(Ex. !roles 3) (p.29)"))
 
 	@commands.command()
 	async def homes(self, ctx):
@@ -1112,8 +1123,8 @@ class CPRed(commands.Cog):
 		upCon = "Upscale Conapt  |  Rent: 7500E$  |  Buy:85000E$\n"
 		luxPent = "Luxury Penthouse  |  Rent:15000E$  |  Buy:150000E$\n"
 		cHouse = "Corpo House  |  Rent:Paid by Corp  |  Buy:200000E$\n"
-		cMansion = "Corpo Mansion  |  Rent:Paid by Corp  |  Buy:500000E$"
-		await ctx.send(box(street + vehicle + cube + cargo + studio + twobr + cCon + upCon + luxPent + cHouse + cMansion))
+		cMansion = "Corpo Mansion  |  Rent:Paid by Corp  |  Buy:500000E$\n"
+		await ctx.send(box(street + vehicle + cube + cargo + studio + twobr + cCon + upCon + luxPent + cHouse + cMansion + "(p.378)"))
 
 	@commands.command()
 	async def drugs(self, ctx, drug=0):
@@ -1135,7 +1146,7 @@ class CPRed(commands.Cog):
 		else:
 			await ctx.send(box("**Drugs of Cyberpunk Red**\n1.Black Lace\t6.Alcohol\n2.Blue Glass\t7.Rohypnol\n3.Boost\n4.Smash\n5.Synthcoke"))
 			await ctx.send("For more information about a particular drug, run the !drugs command with the drug number at the end.")
-			await ctx.send(bold("(Ex. !drugs 3)"))
+			await ctx.send(bold("(Ex. !drugs 3) (p.227)"))
 
 	@commands.command()
 	async def test(self, ctx):
