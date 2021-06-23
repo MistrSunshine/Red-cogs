@@ -864,7 +864,7 @@ class CPRed(commands.Cog):
 		"""
 
 	@fixer.command(name="set")
-	@commands.is_owner
+	@commands.is_owner()
 	async def fixer_set(self, ctx, level: int):
 		"""Set the current fixer level for night market generation"""
 		await self.config.fixerLvl.set(level)
