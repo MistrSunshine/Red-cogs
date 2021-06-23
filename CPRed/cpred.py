@@ -802,7 +802,7 @@ class CPRed(commands.Cog):
 			await ctx.send(box("You do not appear to have enough E$ to purchase a lottery ticket. Tickets are 100E$ each."))
 
 	@lottery.command(name="draw")
-	#@checks.is_owner()
+	@commands.is_owner()
 	async def lottery_draw(self, ctx):
 		"""Draw a winning number for the lottery"""
 		winNum = random.randint(1, 99)
