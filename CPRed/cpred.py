@@ -1048,6 +1048,7 @@ class CPRed(commands.Cog):
 		embed.set_author(name="CP_AI", icon_url="https://cdn.discordapp.com/avatars/848331788270436372/d274fe90da1a000a4446401f3b73719b.png?size=1024")
 		embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Information.svg/1024px-Information.svg.png")
 		embed.add_field(name="!source", value="Display a link to the bot GitHub repository.", inline=False)
+		embed.add_field(name="!assets", value="Display a link to the CP Red assets share.", inline=False)
 		embed.add_field(name="!achievements unlocked", value="Display a list of your player achievements, optionally, add a user at the end to check their achievements.", inline=False)
 		embed.add_field(name="!fixer level", value="Shows the current level of the crews fixer.", inline=False)
 		embed.add_field(name="!nightmarket", value="Generate a random night market encounter.", inline=False)
