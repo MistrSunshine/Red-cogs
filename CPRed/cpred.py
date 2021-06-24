@@ -564,7 +564,8 @@ class CPRed(commands.Cog):
 			},
 			jackpot = 5000,
 			lottopool = 0,
-			prizes = []
+			prizes = [],
+			assets = ""
 			)
 		self.config.register_user(
 			currentip = 0,
@@ -982,6 +983,19 @@ class CPRed(commands.Cog):
 	async def source(self, ctx):
 		"""Display the GitHub URL for the CP_AI cog"""
 		await ctx.send("The CP_AI sourcecode can be found at: https://github.com/MistrSunshine/Red-cogs")
+
+	@commands.command()
+	async def assets(self, ctx):
+		"""Display a link to the shared assets folder for map making"""
+		link = await self.config.assets()
+		await ctx.send("The shared files can be found at: " + link)
+
+	@commands.command()
+	@commands.is_owner()
+	async def addassets(self, ctx, link: str):
+		"""Add a link to the shared assets"""
+		await self.config.assets.set(link)
+		await ctx.send("The assets list has been set to: " + link)
 
 	@commands.command()
 	@commands.is_owner()
