@@ -1074,6 +1074,7 @@ class CPRed(commands.Cog):
 		embed.add_field(name="!achievements unlocked", value="Display a list of your player achievements, optionally, add a user at the end to check their achievements.", inline=False)
 		embed.add_field(name="!fixer level", value="Shows the current level of the crews fixer.", inline=False)
 		embed.add_field(name="!nightmarket", value="Generate a random night market encounter.", inline=False)
+		embed.add_field(name="!dealer", value="Generate a random drug dealer encounter.", inline=False)
 		embed.add_field(name="!nextgame", value="Display the next scheduled games date and time.", inline=False)
 		embed.add_field(name="!roll [amount]d[sides]", value="Roll [amount] dice with [sides]. Ex. !roll 2d13", inline=False)
 		embed.add_field(name="!homebrew", value="List the current implemented home rules for our game.", inline=False)
