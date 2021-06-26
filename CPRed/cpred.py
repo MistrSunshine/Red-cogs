@@ -548,6 +548,17 @@ survival = [
 	'Axe - 50E$'
 	]
 
+# Drugs
+drugs = [
+	'Black Lace - 50E$',
+	'Blue Glass - 20E$',
+	'Boost - 50E$',
+	'Smash - 10E$',
+	'Synthcoke - 20E$',
+	'Alcohol - 5E$',
+	'Rohypnol - 20E$'
+	]
+
 class CPRed(commands.Cog):
 	"""A Cyberpunk Red helper cog, with dice rolling and information about the game."""
 
@@ -927,6 +938,17 @@ class CPRed(commands.Cog):
 		sellItems = '\n'.join(map(str, items))
 		results = categories + sellItems
 		await ctx.send(box(results))
+
+	@commands.command()
+	async def dealer(self, ctx):
+		"""Generate drugs available at a dealer"""
+		variety = random.randint(1, 3)
+		available = random.sample(drugs, variety)
+		msg = "The dealer has these available:\n\n"
+		for item in available:
+			amt = random.randint(1, 5)
+			msg += str(amt) + ' ' + str(item) + '\n'
+		await ctx.send(box(msg))
 
 	@commands.group()
 	async def achievements(self, ctx: commands.Context):
