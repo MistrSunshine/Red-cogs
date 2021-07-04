@@ -576,7 +576,8 @@ class CPRed(commands.Cog):
 			jackpot = 5000,
 			lottopool = 0,
 			prizes = [],
-			assets = ""
+			assets = "",
+			game = ""
 			)
 		self.config.register_user(
 			currentip = 0,
@@ -1017,7 +1018,20 @@ class CPRed(commands.Cog):
 	async def addassets(self, ctx, link: str):
 		"""Add a link to the shared assets"""
 		await self.config.assets.set(link)
-		await ctx.send("The assets list has been set to: " + link)
+		await ctx.send("The assets link has been set to: " + link)
+
+	@commands.command()
+	async def game(self, ctx):
+		"""Display a link to the game server"""
+		link = await self.config.game()
+		await ctx.send("The game server can be found at: " + link)
+
+	@commands.command()
+	@commands.is_owner()
+	async def addgame(self, ctx, link: str):
+		"""Add a link to the game server"""
+		await self.config.game.set(link)
+		await ctx.send("The game link has been set to: " + link)
 
 	@commands.command()
 	@commands.is_owner()
@@ -1071,6 +1085,7 @@ class CPRed(commands.Cog):
 		embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Information.svg/1024px-Information.svg.png")
 		embed.add_field(name="!source", value="Display a link to the bot GitHub repository.", inline=False)
 		embed.add_field(name="!assets", value="Display a link to the CP Red assets share.", inline=False)
+		embed.add_field(name="!game", value="Display a link to the CP Red game server.", inline=False)
 		embed.add_field(name="!achievements unlocked", value="Display a list of your player achievements, optionally, add a user at the end to check their achievements.", inline=False)
 		embed.add_field(name="!fixer level", value="Shows the current level of the crews fixer.", inline=False)
 		embed.add_field(name="!nightmarket", value="Generate a random night market encounter.", inline=False)
