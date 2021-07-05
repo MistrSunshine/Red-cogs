@@ -990,7 +990,7 @@ class CPRed(commands.Cog):
 			awd[achievement] = desc
 			await self.config.user(user).awarded.set(awd)
 			await ctx.send(box("The {} achievement has been unlocked by {}!".format(achievement, user)))
-			await ctx.send(box("The description for {} is {}.".format(achievement, desc)))
+			await ctx.send(box("The description for {} is '{}'.".format(achievement, desc)))
 		except:
 			await ctx.send(box("The requested achievement was not found."))
 
