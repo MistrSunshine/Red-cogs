@@ -1062,7 +1062,8 @@ class CPRed(commands.Cog):
 		embed.add_field(name="!dice [bet]", value="Roll dice and win on a 2, 7, 11, and 12 (bet 25-100).", inline=False)
 		embed.add_field(name="!double [bet]", value="Play a game of double or nothing (bet 10-250).", inline=False)
 		embed.add_field(name="!hilo [bet] [choice]", value="Pick high, low, or 7 of a dice roll (bet 25-75) (choice = high, low, or 7).", inline=False)
-		embed.add_field(name="!War [bet]", value="Play a modified game of war (bet 25-75).", inline=False)
+		embed.add_field(name="!war [bet]", value="Play a modified game of war (bet 25-75).", inline=False)
+		embed.add_field(name="!russian", value="Start a game of Russian Roulette for others to join. (Cost to enter is 500E$, last one standing takes all)", inline=False)
 		await ctx.send(embed=embed)
 		# Lottery
 		embed=discord.Embed(title="~ Lottery ~", description="All that E$ sitting out there with no owner", color=0x53d5fd)
@@ -1096,6 +1097,7 @@ class CPRed(commands.Cog):
 		embed.add_field(name="!roles", value="Show available character roles included with Cyberpunk Red.", inline=False)
 		embed.add_field(name="!homes", value="Show available homes with corresponding prices.", inline=False)
 		embed.add_field(name="!drugs", value="Show available drugs included with Cyberpunk Red.", inline=False)
+		embed.add_field(name="!tarot [option]", value="Receive a tarot reading from our Cyberpunk AI. (option can be: life, reading, or card)", inline=False)
 		await ctx.send(embed=embed)
 		# Help
 		embed=discord.Embed(title="~ Help ~", description="Having trouble? Check here.", color=0x008cb4)
