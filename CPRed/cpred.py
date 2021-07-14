@@ -573,6 +573,7 @@ class CPRed(commands.Cog):
 			achList = {
 				"Test": "Super cool tester"
 			},
+			graveyard = [],
 			jackpot = 5000,
 			lottopool = 0,
 			prizes = [],
@@ -1008,6 +1009,26 @@ class CPRed(commands.Cog):
 		await ctx.send("The CP_AI sourcecode can be found at: https://github.com/MistrSunshine/Red-cogs")
 
 	@commands.command()
+	async def graveyard(self, ctx):
+		"""Visit the graves of those that have fallen"""
+		graves = await self.config.graveyard()
+		if len(graves) == 0:
+			await ctx.send("The graveyard is empty.")
+		else:
+			msg = "Walking through the graveyard, you notice the following gravestones:\n"
+			msg += graves
+			await ctx.send("msg")
+
+	@commands.command()
+	async def addgrave(self, ctx, death):
+		"""Bury a character in the graveyard"""
+		# Format is Name - Quote - Date
+		graves = await self.config.graveyard()
+		graves.append(death)
+		await self.config.graveyard.set(graves)
+		await ctx.send("{} has been added to the graveyard.".format(death))
+
+	@commands.command()
 	async def assets(self, ctx):
 		"""Display a link to the shared assets folder for map making"""
 		link = await self.config.assets()
@@ -1097,6 +1118,7 @@ class CPRed(commands.Cog):
 		embed.add_field(name="!roles", value="Show available character roles included with Cyberpunk Red.", inline=False)
 		embed.add_field(name="!homes", value="Show available homes with corresponding prices.", inline=False)
 		embed.add_field(name="!drugs", value="Show available drugs included with Cyberpunk Red.", inline=False)
+		embed.add_field(name="!graveyard", value="Remember those that have fallen.", inline=False)
 		embed.add_field(name="!tarot [option]", value="Receive a tarot reading from our Cyberpunk AI. (option can be: life, reading, or card)", inline=False)
 		await ctx.send(embed=embed)
 		# Help
