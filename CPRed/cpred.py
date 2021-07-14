@@ -999,7 +999,8 @@ class CPRed(commands.Cog):
 	async def achievements_list (self, ctx):
 		"""List available achievements"""
 		listAch = await self.config.achList()
-		await ctx.send(box("Available achievements are:\n{}".format(listAch)))
+		sList = listAch.split(',')
+		await ctx.send(box("Available achievements are:\n{}".format(sList)))
 
 	# Informational commands
 
