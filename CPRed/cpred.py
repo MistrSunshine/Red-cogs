@@ -1002,6 +1002,7 @@ class CPRed(commands.Cog):
 		awards = []
 		for key, value in listAch.items():
 			awards.append(key + ' : ' + value)
+		awards = awards.split(',')
 		msg = '\n'.join(awards)
 		await ctx.send("Available achievements are:\n{}".format(awards))
 
