@@ -1000,7 +1000,7 @@ class CPRed(commands.Cog):
 		"""List available achievements"""
 		listAch = await self.config.achList()
 		awards = []
-		for key, value in listAch:
+		for key, value in listAch.items():
 			st = str(key + ':' + value)
 			awards.append(st)
 		await ctx.send("Available achievements are:\n{}".format(awards))
