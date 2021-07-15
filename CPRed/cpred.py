@@ -963,11 +963,15 @@ class CPRed(commands.Cog):
 		"""Display player achievements"""
 		try:
 			awards = await self.config.user(user).awarded()
-			sAwards = str(awards)
+			sAwards = ""
+			for key, value in awards.items():
+				sAwards += key + ' :   ' + value + '\n'
 			await ctx.send(box("{}'s current achievements are:\n".format(user) + sAwards))
 		except:
 			awards = await self.config.user(ctx.author).awarded()
-			sAwards = str(awards)
+			sAwards = ""
+			for key, value in awards.items():
+				sAwards += key + ' :   ' + value + '\n'
 			await ctx.send(box("Your current achievements are:\n" + sAwards))
 
 	@achievements.command(name="add")
@@ -1001,9 +1005,7 @@ class CPRed(commands.Cog):
 		listAch = await self.config.achList()
 		awards = ""
 		for key, value in listAch.items():
-			awards += key + ' : ' + value + '\n'
-		#awards = awards.split(',')
-		#msg = '\n'.join(awards)
+			awards += key + ' :   ' + value + '\n'
 		await ctx.send("Available achievements are:\n{}".format(awards))
 
 	# Informational commands
