@@ -1011,7 +1011,10 @@ class CPRed(commands.Cog):
 		workRate = 50 + (10 * random.randint(0, 25))
 		msg = "The Tech's installation fee is: "
 		msg += str(workRate) + "E$\n\n"
-		# Stopped here
+		msg += "The Tech has these available:\n\n"
+		for item in available:
+			msg += str(item) + '\n'
+		await ctx.send(box(msg))
 
 	@commands.group()
 	async def achievements(self, ctx: commands.Context):
