@@ -214,7 +214,10 @@ exotics = [
 	'Shrieker - 500E$',
 	'Stun Baton - 100E$',
 	'Stun Gun - 100E$',
-	'Tsunami Arms Helix - 5000E$'
+	'Tsunami Arms Helix - 5000E$',
+	'Ground Drone - 500E$',
+	'Mini Air Drone - 100E$',
+	'Large Air Drone - 1000E$'
 	]
 
 ammo = [
@@ -557,6 +560,54 @@ drugs = [
 	'Synthcoke - 20E$',
 	'Alcohol - 5E$',
 	'Rohypnol - 20E$'
+	]
+
+# Upgrades
+upgrades = [
+	'Armor - 200E$',
+	'Audio Recorder - 100E$',
+	'Manipulator Arm - 100E$',
+	'Microphone - 100E$',
+	'Night Vision Camera - 100E$',
+	'Observation Camera - 100E$',
+	'Pistol Mount - 200E$',
+	'Radiation Detector - 100E$',
+	'Rifle Mount - 300E$',
+	'Silent Motors - 100E$',
+	'Silent Rotors - 100E$',
+	'Speed Upgrade - 200E$',
+	'Assault Rifle Drum Magazine - ',
+	'Assault Rifle Extended Magazine - ',
+	'Backup Drive - ',
+	'Bayonet - ',
+	'DNA Lock - ',
+	'Grenade Launcher Drum Magazine - ',
+	'Grenade Launcher Extended Magazine - ',
+	'Grenade Launcher Underbarrel - ',
+	'Hardened Circuitry - ',
+	'Heavy Pistol Drum Magazine - ',
+	'Heavy Pistol Extended Magazine - ',
+	'Heavy SMG Drum Magazine - ',
+	'Heavy SMG Extended Magazine - ',
+	'Infrared Nightvision Scope - ',
+	'Insulated Wiring - ',
+	'KRASH Barrier - ',
+	'Medium Pistol Drum Magazine - ',
+	'Medium Pistol Extended Magazine - ',
+	'Range Upgrade - ',
+	'Rocket Launcher Drum Magazine - ',
+	'Rocket Launcher Extended Magazine - ',
+	'Shotgun Drum Magazine - ',
+	'Shotgun Extended Magazine - ',
+	'Shotgun Underbarrel - ',
+	'Smartgun Link - ',
+	'SMG Drum Magazine - ',
+	'SMG Extended Magazine - ',
+	'Sniper Rifle Drum Magazine - ',
+	'Sniper Rifle Extended Magazine - ',
+	'Sniping Scope - ',
+	'Very Heavy Pistol Drum Magazine - ',
+	'Very Heavy Pistol Extended Magazine - '
 	]
 
 class CPRed(commands.Cog):
@@ -951,6 +1002,16 @@ class CPRed(commands.Cog):
 			amt = random.randint(1, 5)
 			msg += str(amt) + ' ' + str(item) + '\n'
 		await ctx.send(box(msg))
+
+	@commands.command()
+	async def tech(self, ctx):
+		"""Generate upgrades available from a technician"""
+		variety = random.randint(1, 5)
+		available = random.sample(upgrades, variety)
+		workRate = 50 + (10 * random.randint(0, 25))
+		msg = "The Tech's installation fee is: "
+		msg += str(workRate) + "E$\n\n"
+		# Stopped here
 
 	@commands.group()
 	async def achievements(self, ctx: commands.Context):
